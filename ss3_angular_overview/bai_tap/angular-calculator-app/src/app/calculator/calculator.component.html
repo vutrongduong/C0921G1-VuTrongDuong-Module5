@@ -1,0 +1,17 @@
+<h1>Calculator</h1>
+<fieldset>
+  <legend>Calculator</legend>
+  First operand:
+  <input #id1 /><br>
+  Operator:
+  <select [(ngModel)]="operator">
+    <option value="+">Addition(+)</option>
+    <option value="-">Subtraction(-)</option>
+    <option value="*">Multiplication(x)</option>
+    <option value="/">Division(/)</option>
+  </select><br>
+  Second operand:
+  <input #id2 /><br>
+  <h4> Result : {{result}}</h4>
+  <button (click)="calculate(id1.value, id2.value )">Calculator</button>
+</fieldset>

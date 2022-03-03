@@ -1,0 +1,16 @@
+<p ng>Choose your monster's colors:</p>
+<div>
+  <input type="color"
+         value="#f6b73c" (change)="changeColor($event.target.value)">
+  <label>Body</label>
+  <h1 *ngIf="isShow" [ngStyle]="{ 'color' : styleColor }">Helllllllllllllllllllllllllllllo</h1>
+  <!--  <h1 [style.color]="styleColor"  >Helllllllllllllllllllllllllllllo</h1>-->
+  <button (click)="isShow=!isShow">Submit</button>
+</div>
+<ul>
+  <li *ngFor="let item of arr">
+    <p>{{"Subject :" + item}}</p>
+  </li>
+</ul>
+
+
