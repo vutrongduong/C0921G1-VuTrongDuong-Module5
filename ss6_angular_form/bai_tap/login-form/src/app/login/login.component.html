@@ -1,0 +1,39 @@
+<div id="login">
+  <h3 class="text-center pt-5">Login form</h3>
+  <div class="container">
+    <div id="login-row" class="row justify-content-center align-items-center">
+      <div id="login-column" class="col-md-6">
+        <div id="login-box" class="col-md-12">
+          <form id="login-form" class="form" [formGroup]="loginForm" (ngSubmit)="submit()">
+            <h3 class="text-center text-info">Login</h3>
+            <div class="form-group">
+              <label for="email" class="text-info">Email:</label><br>
+              <input type="text" name="email" id="email" class="form-control" formControlName="email">
+              <div
+                *ngIf="!loginForm.controls.email?.valid&&(loginForm.controls.email?.dirty||loginForm.controls.email?.touched)">
+                <p style="color: red">Email is not valid</p>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="password" class="text-info">Password:</label><br>
+              <input type="password" name="password" id="password" class="form-control" formControlName="password">
+              <div
+                *ngIf="!loginForm.controls.password?.valid&&(loginForm.controls.password?.dirty||loginForm.controls.password?.touched)">
+                <div [hidden]="!loginForm.controls.password?.errors.required">
+                  <p style="color: red">Password cannot be blank</p>
+                </div>
+                <div [hidden]="!loginForm.controls.password.errors.minlength">
+                  <p style="color: red">Password min Length is 6</p>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <br>
+              <input [disabled]="!loginForm.valid" type="submit" name="submit" class="btn btn-info btn-md" value="Login">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

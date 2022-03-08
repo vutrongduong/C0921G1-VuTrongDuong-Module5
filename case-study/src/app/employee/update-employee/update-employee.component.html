@@ -1,0 +1,104 @@
+<div class="border border-3 row h-75 container-fluid">
+  <div class="col-lg-3">
+    <img style="width: 650px" src="https://furamavietnam.com/wp-content/uploads/2020/03/tet-pop-up-01.png">
+  </div>
+  <div class="col-lg-9 text-center container-fluid">
+    <div class="signup-form">
+      <form action="@{/employee/update}" method="post" class="form-horizontal" object="${employeeDto}">
+        <div class="row">
+          <div class="col-8 offset-4">
+            <h3 style="color:lightseagreen"> Update Employee</h3>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-form-label col-4">ID Employee</label>
+          <div class="col-8">
+            <input type="hidden" class="form-control">
+            <h5 style="color: black;margin-top: 9px;" th:text="${employeeDto.employeeId}"></h5>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-form-label col-4">Name</label>
+          <div class="col-8 mt-2">
+            <input class="form-control" type="text">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-form-label col-4">Birthday</label>
+          <div class="col-8 mt-2">
+            <input class="form-control h-75" type="date">
+          </div>
+        </div>
+        <!--        <div class="form-group row">-->
+        <!--          <label class="col-form-label col-4">Division</label>-->
+        <!--          <div class="col-8 mt-2">-->
+        <!--            <select th:field="*{division}">-->
+        <!--              <option th:each=" division : ${divisions}" th:text="${division.divisionName}"-->
+        <!--                      th:value="${division.divisionId} "></option>-->
+        <!--            </select>-->
+        <!--          </div>-->
+        <!--        </div>-->
+        <!--        <div class="form-group row">-->
+        <!--          <label class="col-form-label col-4">Position</label>-->
+        <!--          <div class="col-8 mt-2">-->
+        <!--            <select th:field="*{position}">-->
+        <!--              <option th:each=" position : ${positions}" th:text="${position.positionName}"-->
+        <!--                      th:value="${position.positionId} "></option>-->
+        <!--            </select>-->
+        <!--          </div>-->
+        <!--        </div>-->
+        <!--        <div class="form-group row">-->
+        <!--          <label class="col-form-label col-4">Education Degree</label>-->
+        <!--          <div class="col-8 mt-2">-->
+        <!--            <select th:field="*{educationDegree}">-->
+        <!--              <option th:each=" educationDegree : ${educations}"-->
+        <!--                      th:text="${educationDegree.educationDegreeName}"-->
+        <!--                      th:value="${educationDegree.educationDegreeId} "></option>-->
+        <!--            </select>-->
+        <!--          </div>-->
+        <!--        </div>-->
+        <div class=" form-group row">
+          <label class="col-form-label col-4">Id Card</label>
+          <div class="col-8 mt-2">
+            <input class="form-control" type="text">
+          </div>
+        </div>
+        <div class=" form-group row">
+          <label class="col-form-label col-4">Salary</label>
+          <div class="col-8 mt-2">
+            <input class="form-control" type="text">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-form-label col-4">Phone</label>
+          <div class="col-8 mt-2">
+            <input class="form-control" type="text">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-form-label col-4">E-mail</label>
+          <div class="col-8 mt-2">
+            <input class="form-control" type="email">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-form-label col-4">Address</label>
+          <div class="col-8 mt-2">
+            <input class="form-control" type="text">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-form-label col-4">User</label>
+          <div class="text-field col-8">
+            <input autocomplete="off" type="text"
+                   placeholder="Enter your user"/>
+          </div>
+        </div>
+        <div class="form-group col-lg-8 float-lg-end">
+          <button type="submit" class="btn btn-success col-lg-6">Update Employee</button>
+          <a style="color: white" href="/employee" class="btn btn-secondary btn-lg col-lg-2 float-lg-end">Return</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

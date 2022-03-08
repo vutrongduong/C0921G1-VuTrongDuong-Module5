@@ -1,27 +1,91 @@
-<div class="container-fluid" >
+<div class="container-fluid">
   <div class="row container-fluid">
-    <div class="col-lg-9">
-      <img width="75px"
-           src="assets\img\logofurana.png">
+    <div class="header-content">
+      <div class="container">
+        <div class="row">
+          <div class="col-auto col-sm-5 col-lg-3 d-flex align-items-center bestel-logo">
+            <a class="header-logo"><img
+              src="https://furamavietnam.com/wp-content/uploads/2018/08/logo.png" alt="logo " class="img-fluid"></a>
+          </div>
+          <div class="col col-md-auto col-lg-3 d-flex">
+            <div class="catalog-widget d-none d-sm-block">
+              <div class="catalog-widget-inside">
+                  <div class="widget-tripadvisor">
+                    <div class="inside">
+                      <div class="widget-tripadvisor-logo"><img width="150px"
+                        src="https://smartdata.tonytemplates.com/bestel/wp-content/uploads/2018/05/widget-tripadvisor-logo.png"
+                        alt=""></div>
+                      <div class="widget-tripadvisor-rating"><img width="100px"
+                        src="https://furamavietnam.com/wp-content/uploads/2018/08/widget-tripadvisor-rating.png" alt="">
+                      </div>
+                      <div class="widget-tripadvisor-text nav-link" style="text-decoration: none">2,746 Reviews</div>
+                    </div>
+                  </div>
+                <span class="catalog-widget-toggle js-catalog-widget-toggle"></span></div>
+            </div>
+            <div class="catalog-widget-mobile d-flex d-sm-none align-items-center mx-auto">
+            </div>
+          </div>
+
+          <div class="col-sm-3 d-none d-lg-block">
+            <div class="header-contact d-flex">
+              <div class="header-contact-icon"><i class="icon-placeholder"></i></div>
+              <div class="header-contact-txt">
+                <svg style="color: #046056" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
+                  <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
+                </svg>
+                <p>
+                  103 - 105 Vo Nguyen Giap Street, Khue My Ward, Ngu Hanh Son District, Danang City, Vietnam
+                <p class="txt-sm">
+                  <span>7,0 km</span> from Danang Airport </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-3 d-none d-lg-block">
+            <div class="header-contact d-flex">
+              <div class="header-contact-txt">
+
+                <p class="txt-lg"><svg style="color: #046056" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telephone-fill" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"/>
+                </svg>
+                  84-236-3847 333/888 </p>
+              </div>
+            </div>
+            <div class="header-contact d-flex">
+              <div class="header-contact-txt">
+                <svg style="color: #046056" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
+                  <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/>
+                </svg>
+                <a href="mailto:reservation@furamavietnam.com" style="text-decoration: none; color: black">
+                  reservation@furamavietnam.com </a>
+              </div>
+            </div>
+          </div>
+          <div class="col-auto ml-auto d-flex d-lg-none">
+            <button class="navbar-btn" data-target='#modalNavigation' data-toggle='modal'>
+              <i class="icon-menu"></i>
+            </button>
+            <div class='modal fade modal-fullscreen-menu' id='modalNavigation'>
+              <button aria-label='Close' class='close' data-dismiss='modal'>
+                <i class="icon-close"></i>CLOSE
+              </button>
+              <div class='modal-dialog'>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-<!--    <div class="col-lg-3 pt-lg-5 pe-lg-5" sec:authorize="anonymous">-->
-<!--      <a class="btn btn-success" href="/login">Login</a>-->
-<!--    </div>-->
-<!--    <div class="col-lg-3 mt-lg-3 pe-lg-5">-->
-<!--      <div sec:authorize="isAuthenticated()"> &lt;!&ndash;Kiểm tra đã xác thực hay chưa.&ndash;&gt;-->
-<!--        <h5 style="color:lightseagreen">Hello : <span sec:authentication="principal.name"></span></h5>-->
-<!--        <a class="btn btn-warning" th:href="@{/logout}">Logout</a>-->
-<!--      </div>-->
-<!--    </div>-->
   </div>
   <div class="border border-3 row header">
     <div class="col-lg-10 row float-lg-end ">
-      <a id="home" class="nav-link-1 col-lg-2" href="/">Home</a>
-      <a class="nav-link-1 col-lg-2" href="/employee">Employee</a>
-      <a class="nav-link-1 col-lg-2" href="/customer">Customer</a>
-      <a class="nav-link-1 col-lg-2" href="/service">Service</a>
-      <a class="nav-link-1 col-lg-2" href="/contract/create">Contact</a>
-      <a class="nav-link-1 col-lg-2" href="/contract_detail/create">Contact Detail</a>
+      <a id="home" class="nav-link-1 col-lg-2 fw-bold" href="/">Home</a>
+      <a class="nav-link-1 col-lg-2 fw-bolder" href="/employee">Employee</a>
+      <a class="nav-link-1 col-lg-2 fw-bolder" href="/customer">Customer</a>
+      <a class="nav-link-1 col-lg-2 fw-bolder" href="/facility">Facility</a>
+      <a class="nav-link-1 col-lg-2 fw-bolder" href="/contract">Contact</a>
+      <a class="nav-link-1 col-lg-2 fw-bolder" href="/contract_detail/create">Contact Detail</a>
     </div>
   </div>
 </div>

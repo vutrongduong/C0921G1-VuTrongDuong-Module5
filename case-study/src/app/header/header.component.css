@@ -1,5 +1,5 @@
 .header {
-  background-color: lightseagreen;
+  background-color: #046056;
 }
 .nav-link:focus, .nav-link:hover {
   color: black;
@@ -21,3 +21,15 @@
 #home{
   font-size: 20px;
 }
+.widget-tripadvisor {
+  padding: 15px 0 15px 25px;
+  width: 176px;
+  height: 82px;
+}
+.d-flex {
+  display: flex!important;
+}
+.catalog-widget-inside > a:first-child {
+  border-top: 4px solid #046056;
+}
+

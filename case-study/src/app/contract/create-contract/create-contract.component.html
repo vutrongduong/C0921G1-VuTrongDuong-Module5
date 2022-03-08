@@ -1,0 +1,81 @@
+<div class="border border-3 row h-75 container-fluid">
+  <div class="col-lg-3">
+    <a class="btn btn-danger float-lg-end mt-lg-3 " href="/contract/create">Create New Contract</a>
+    <img style="width: 650px" src="https://furamavietnam.com/wp-content/uploads/2020/03/tet-pop-up-01.png">
+  </div>
+  <div class="col-lg-9 text-center container-fluid">
+    <div class="signup-form">
+      <form action="@{/contract/create}" object="${contractDto}" method="POST">
+        <div class="row">
+          <div class="col-8 offset-4">
+            <h3 style="color:lightseagreen">Add Contract</h3>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-form-label col-4">Start Date</label>
+          <div class=" text-field col-8">
+            <input autocomplete="off" type="date" name="startDate"/>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-form-label col-4">End Date</label>
+          <div class="text-field col-8">
+            <input autocomplete="off" type="date" name="endDate"/>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-form-label col-4">Deposit</label>
+          <div class="col-8 mt-2">
+            <input class="form-control " type="text" name="deposit"
+                   placeholder="Enter your deposit">
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-form-label col-4">Facility</label>
+          <div class="text-field col-8">
+            <select th:field="*{service}" name="service" class="money">
+              <option th:value="null" selected>Choose Facility</option>
+              <option th:each="item:${service}" th:value="${item.serviceId}"
+                      th:text="${item.serviceName}"></option>
+            </select>
+          </div>
+        </div>
+        <div class=" form-group row">
+          <label class="col-form-label col-4">Total Money</label>
+          <div class="text-field col-8">
+            <input readonly style="color: black;margin-top: 9px;" class="form-control " id="money"
+                   type="text" name="totalMoney">
+          </div>
+        </div>
+        <div class=" form-group row">
+          <label class="col-form-label col-4">Employee</label>
+          <div class="text-field col-8">
+            <select th:field="*{employee}" name="employee">
+              <option th:value="null" selected>Choose Employee</option>
+              <option th:each="item:${employee}" th:value="${item.employeeId}"
+                      th:text="${item.employeeName}"></option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-form-label col-4">Customer</label>
+          <div class="text-field col-8">
+            <select th:field="*{customer}" name="customer">
+              <option th:value="null" selected>Choose Customer</option>
+              <option th:each="item:${customer}" th:value="${item.customerId}"
+                      th:text="${item.customerName}"></option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-8 offset-4 ">
+            <p><label class="form-check-label"><input type="checkbox"> I accept the <span>Are
+                                                you sure the above information is completely correct?</span></label></p>
+            <button type="submit" class="btn btn-primary btn-lg">Add New Contract</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

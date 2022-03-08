@@ -15,12 +15,9 @@
           <i class="fa-solid fa-magnifying-glass"></i>
           <input type="text" name="customerAddress" placeholder="Serach By Address">
         </div>
-        <select name="customerType" class="col-lg-3 search-input">
+        <select class="col-lg-3 search-input">
           <option disabled selected>Choose Customer Type</option>
-<!--          <th:block th:each="typeList :${customerTypeList}">-->
-<!--            <option th:text="${typeList.customerTypeName}"-->
-<!--                    th:value="${typeList.customerTypeId}"></option>-->
-<!--          </th:block>-->
+          <option *ngFor="let customerType of customerTypeList" name="customerType">{{customerType.customerTypeName}}</option>
         </select>
         <button class="col-lg-1 btn btn-outline-success" type="submit">Search</button>
       </form>
@@ -38,70 +35,91 @@
       </tr>
       </thead>
       <tbody>
-<!--      <tr th:each="customer : ${customers}">-->
-<!--        <td th:text="${customer.customerId}"></td>-->
-<!--        <td th:text="${customer.customerName}"></td>-->
-<!--        <td th:if="${customer.customerGender==true}">Male</td>-->
-<!--        <td th:if="${customer.customerGender==false}">Female</td>-->
-<!--        <td th:text="${#dates.format(customer.customerBirthday, 'dd/MM/yyyy')}"></td>-->
-<!--        <td th:text="${customer.customerAddress}"></td>-->
-<!--        <td th:text="${customer.customerType.customerTypeName}"></td>-->
-<!--        <td>-->
-<!--          <button class="btn btn-info view" type="button">-->
-<!--            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"-->
-<!--                 class="bi bi-view-stacked" viewBox="0 0 16 16">-->
-<!--              <path d="M3 0h10a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3zm0 8h10a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1H3z"/>-->
-<!--            </svg>-->
-<!--          </button>-->
-<!--          <input type="hidden" th:value="${customer.customerId}">-->
-<!--          <a class="btn btn-warning" th:href="@{/customer/update/__${customer.customerId}__}">-->
-<!--            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"-->
-<!--                 class="bi bi-pencil-square" viewBox="0 0 16 16">-->
-<!--              <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>-->
-<!--              <path fill-rule="evenodd"-->
-<!--                    d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>-->
-<!--            </svg>-->
-<!--          </a>-->
-<!--          <button class="btn btn-danger deleteShow">-->
-<!--            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"-->
-<!--                 class="bi bi-trash-fill" viewBox="0 0 16 16">-->
-<!--              <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>-->
-<!--            </svg>-->
-<!--          </button>-->
-<!--          <input type="hidden" th:value="${customer.customerId}">-->
-<!--        </td>-->
-<!--      </tr>-->
+      <tr *ngFor="let customer of customerList">
+        <td>{{customer.id}}</td>
+        <td>{{customer.customerName}}</td>
+        <td>{{customer.customerGender}}</td>
+        <td>{{customer.customerBirthday}}</td>
+        <td>{{customer.customerAddress}}</td>
+        <td>{{customer.customerType.customerTypeName}}</td>
+
+        <td>
+          <button class="btn btn-info view" type="button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                 class="bi bi-view-stacked" viewBox="0 0 16 16">
+              <path
+                d="M3 0h10a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3zm0 8h10a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1H3z"/>
+            </svg>
+          </button>
+          <input type="hidden" value="{{customer.id}}">
+<!--          <a class="btn btn-warning" [routerLink]="'/customer/update/'+ customer.id ">-->
+          <a class="btn btn-warning" href="/customer/update" >
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                 class="bi bi-pencil-square" viewBox="0 0 16 16">
+              <path
+                d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+              <path fill-rule="evenodd"
+                    d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+            </svg>
+          </a>
+          <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                 class="bi bi-trash-fill" viewBox="0 0 16 16">
+              <path
+                d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+            </svg>
+          </button>
+        </td>
+      </tr>
       </tbody>
     </table>
     <div>
-<!--      <nav aria-label="...">-->
-<!--        <ul class="pagination">-->
-<!--          <li class="page-item">-->
-<!--            <a class="page-link" th:href="@{'/customer' (page=${customers.number - 1},-->
-<!--                customerName = ${customerName},-->
-<!--                  customerAddress = ${customerAddress},-->
-<!--                  customerType = ${customerType})}"-->
-<!--               th:if="${customers.hasPrevious()}" style="color:lightseagreen">Previous</a>-->
-<!--          </li>-->
-<!--          &lt;!&ndash;                        <li class="page-item"><p class="page-link" style="color:red "&ndash;&gt;-->
-<!--          &lt;!&ndash;                                                    th:text="${customers.number+1}">/</p></li>        <p class="page-item"><span class="page-link" style="color:red "&ndash;&gt;-->
-<!--          &lt;!&ndash;                                                                                                                                    >/</span></p>&ndash;&gt;-->
-<!--          &lt;!&ndash;                        <li class="page-item"><span class="page-link" style="color:red "&ndash;&gt;-->
-<!--          &lt;!&ndash;                                                    th:text="${customers.totalPages}"></span></li>&ndash;&gt;-->
-<!--          <li class="page-item">-->
-<!--            <div class="page-link " style="color: red">-->
-<!--              <span th:text="${customers.number+1}"></span> <span style="color: lightseagreen">/</span>-->
-<!--              <span th:text="${customers.totalPages}"></span>-->
-<!--            </div>-->
-<!--          </li>-->
-<!--          <li class="page-item">-->
-<!--            <a class="page-link" th:href="@{'/customer' (page=${customers.number + 1},-->
-<!--                customerName = ${customerName},-->
-<!--                customerAddress = ${customerAddress},-->
-<!--                customerType = ${customerType})}" th:if="${customers.hasNext()}" style="color:lightseagreen">Next</a>-->
-<!--          </li>-->
-<!--        </ul>-->
-<!--      </nav>-->
+      <!--      <nav aria-label="...">-->
+      <!--        <ul class="pagination">-->
+      <!--          <li class="page-item">-->
+      <!--            <a class="page-link" th:href="@{'/customer' (page=${customers.number - 1},-->
+      <!--                      customerName = ${customerName},-->
+      <!--                        customerAddress = ${customerAddress},-->
+      <!--                        customerType = ${customerType})}"-->
+      <!--               th:if="${customers.hasPrevious()}" style="color:lightseagreen">Previous</a>-->
+      <!--          </li>-->
+      <!--          &lt;!&ndash;                        <li class="page-item"><p class="page-link" style="color:red "&ndash;&gt;-->
+      <!--          &lt;!&ndash;                                                    th:text="${customers.number+1}">/</p></li>        <p class="page-item"><span class="page-link" style="color:red "&ndash;&gt;-->
+      <!--          &lt;!&ndash;                                                                                                                                    >/</span></p>&ndash;&gt;-->
+      <!--          &lt;!&ndash;                        <li class="page-item"><span class="page-link" style="color:red "&ndash;&gt;-->
+      <!--          &lt;!&ndash;                                                    th:text="${customers.totalPages}"></span></li>&ndash;&gt;-->
+      <!--          <li class="page-item">-->
+      <!--            <div class="page-link " style="color: red">-->
+      <!--              <span th:text="${customers.number+1}"></span> <span style="color: lightseagreen">/</span>-->
+      <!--              <span th:text="${customers.totalPages}"></span>-->
+      <!--            </div>-->
+      <!--          </li>-->
+      <!--          <li class="page-item">-->
+      <!--            <a class="page-link" th:href="@{'/customer' (page=${customers.number + 1},-->
+      <!--                      customerName = ${customerName},-->
+      <!--                      customerAddress = ${customerAddress},-->
+      <!--                      customerType = ${customerType})}" th:if="${customers.hasNext()}"-->
+      <!--               style="color:lightseagreen">Next</a>-->
+      <!--          </li>-->
+      <!--        </ul>-->
+      <!--      </nav>-->
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Are you sure</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger">Delete</button>
+      </div>
     </div>
   </div>
 </div>

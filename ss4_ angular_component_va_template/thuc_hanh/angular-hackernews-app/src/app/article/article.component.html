@@ -1,7 +1,8 @@
 <h2>Today's article</h2>
 <hr>
-<div *ngFor="let art of articles">
-  <a href="{{art.url}}" target="_blank">{{art.title}}</a>: <app-like></app-like>
+<div *ngFor="let art of articles" class="row container">
+  <a class="col-6" href="{{art.url}}" target="_blank">{{art.title}}</a>:
+  <app-like class="col-5"></app-like>
 </div>
 <hr>
 <div>
@@ -19,9 +20,11 @@
     </tr>
     <tr>
       <td></td>
-      <td><button style="float: right" (click)="addNewArticle()">Add</button></td>
+      <td>
+        <button style="float: right" (click)="addNewArticle()">Add</button>
+      </td>
     </tr>
   </table>
 </div>
 <hr>
-@CodeGym, 2021
+

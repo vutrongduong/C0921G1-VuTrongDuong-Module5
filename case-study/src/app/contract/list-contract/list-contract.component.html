@@ -1,0 +1,126 @@
+<div class="border border-3 row h-75 container-fluid">
+  <div class="col-lg-3 border border-3">
+    <a class="btn btn-danger float-lg-end mt-lg-3" href="/contract/create">Add New Contract</a>
+    <img style="width: 300px" src="https://furamavietnam.com/wp-content/uploads/2020/03/tet-pop-up-01.png">
+  </div>
+  <div class="col-lg-9 text-center" id="table">
+    <h5 style="color: green" th:if="${mess}" th:text="${mess}"></h5>
+    <h5 style="color: red" th:if="${messDelete}" th:text="${messDelete}"></h5>
+    <h3 style="color:lightseagreen">Manage Employee</h3>
+    <form action="/contract" class=" row">
+      <div class="search-input col-lg-4">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" name="name" placeholder="Serach By Name">
+      </div>
+      <select name="positionId" class="col-lg-2 search-input">
+        <option disabled selected>Choose Position</option>
+        <option th:each="position : ${positions}" th:value="${position.positionId}"
+                th:text="${position.positionName}"></option>
+      </select>
+      <select name="divisionId" class="col-lg-2 search-input">
+        <option disabled selected>Choose Division</option>
+        <option th:each="division : ${divisions}" th:value="${division.divisionId}"
+                th:text="${division.divisionName}"></option>
+      </select>
+      <select name="educationDegreeId" class="col-lg-2 search-input">
+        <option disabled selected>Choose Education Degree</option>
+        <option th:each="education : ${educations}" th:value="${education.educationDegreeId}"
+                th:text="${education.educationDegreeName}"></option>
+      </select>
+      <button class="col-lg-1 btn btn-primary" type="submit">Search</button>
+    </form>
+    <table class="table">
+      <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">customer</th>
+        <th scope="col">facility</th>
+        <th scope="col">startDate</th>
+        <th scope="col">endDate</th>
+        <th scope="col">deposit</th>
+        <th scope="col"> totalMoney</th>
+        <th scope="col">Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let contract of contractList">
+        <td>{{contract.id}}</td>
+        <td>{{contract.customer.customerName}}</td>
+        <td>{{contract.facility.facilityName}}</td>
+        <td>{{contract.startDate}}</td>
+        <td>{{contract.endDate}}</td>
+        <td>{{contract.deposit}}</td>
+        <td>{{contract.totalMoney}}</td>
+        <td>
+          <button class="btn btn-info view" type="button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                 class="bi bi-view-stacked" viewBox="0 0 16 16">
+              <path
+                d="M3 0h10a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3zm0 8h10a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1H3z"/>
+            </svg>
+          </button>
+          <input type="hidden" value="${contract.contractId}">
+          <a class="btn btn-warning" href="@{/contract/update/__${contract.contractId}__}">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                 class="bi bi-pencil-square" viewBox="0 0 16 16">
+              <path
+                d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+              <path fill-rule="evenodd"
+                    d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+            </svg>
+          </a>
+          <button class="btn btn-danger " data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                 class="bi bi-trash-fill" viewBox="0 0 16 16">
+              <path
+                d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+            </svg>
+          </button>
+<!--          <input type="hidden" th:value="${contract.contractId}">-->
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <div>
+      <!--      <nav aria-label="...">-->
+      <!--        <ul class="pagination">-->
+      <!--          <li class="page-item">-->
+      <!--            <a class="page-link" th:href="@{'/contract' (page=${contracts.number - 1},-->
+      <!--                name = ${name},-->
+      <!--                  positionId = ${positionId},-->
+      <!--                  divisionId = ${divisionId},-->
+      <!--                  educationDegreeId=${educationDegreeId} )}"-->
+      <!--               th:if="${contracts.hasPrevious()}" style="color:lightseagreen">Previous</a>-->
+      <!--          </li>-->
+      <!--          <li class="page-item"><span th:text="${contracts.number+1}" class="page-link" style="color:red "></span>-->
+      <!--            </span></li>-->
+      <!--          <li class="page-item">-->
+      <!--            <a class="page-link" th:href="@{'/contract' (page=${contracts.number + 1},-->
+      <!--                 name = ${name},-->
+      <!--                  positionId = ${positionId},-->
+      <!--                  divisionId = ${divisionId},-->
+      <!--                  educationDegreeId=${educationDegreeId})}" th:if="${contracts.hasNext()}" style="color:lightseagreen">Next</a>-->
+      <!--          </li>-->
+      <!--        </ul>-->
+      <!--      </nav>-->
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Are you sure</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>

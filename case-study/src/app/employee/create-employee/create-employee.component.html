@@ -1,0 +1,118 @@
+<div class="border border-3 row h-75">
+  <div class="col-lg-3">
+    <img style="width: 650px" src="https://furamavietnam.com/wp-content/uploads/2020/03/tet-pop-up-01.png">
+  </div>
+  <div class="col-lg-9 text-center container-fluid">
+    <div class="signup-form">
+      <form action="@{/employee/create}" method="post" class="form-horizontal" object="${employeeDto}">
+        <div class="row">
+          <div class="col-8 offset-4">
+            <h3 style="color:lightseagreen">Add Employee</h3>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-form-label col-4">Name</label>
+          <div class="text-field col-8">
+            <input autocomplete="off" type="text"
+                   placeholder="Enter your name"/>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-form-label col-4">Birthday</label>
+          <div class="col-8 mt-2">
+            <input class="form-control h-75" type="date">
+
+          </div>
+        </div>
+        <div class=" form-group row">
+          <label class="col-form-label col-4">Id Card</label>
+          <div class="text-field col-8">
+            <input autocomplete="off" type="text"
+                   placeholder="Enter your id card"/>
+
+          </div>
+        </div>
+        <div class=" form-group row">
+          <label class="col-form-label col-4">Salary</label>
+          <div class="text-field col-8">
+            <input autocomplete="off" type="text"
+                   placeholder="Enter your salary"/>
+
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-form-label col-4">Phone</label>
+          <div class="text-field col-8">
+            <input autocomplete="off" type="text"
+                   placeholder="Enter your phone"/>
+
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-form-label col-4">E-mail</label>
+          <div class="text-field col-8">
+            <input autocomplete="off" type="text"
+                   placeholder="Enter your email"/>
+
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-form-label col-4">Address</label>
+          <div class="text-field col-8">
+            <input autocomplete="off" type="text
+                   placeholder=" Enter your address"/>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-form-label col-4">User</label>
+          <div class="text-field col-8">
+            <input autocomplete="off" type="text"
+                   placeholder="Enter your user"/>
+          </div>
+        </div>
+        <!--        <div class="form-group row">-->
+        <!--          <label class="col-form-label col-4">Position</label>-->
+        <!--          <div class="col-8 mt-2">-->
+        <!--            <select th:field="*{position}">-->
+        <!--              <option th:value="null" selected="true">Selector</option>-->
+        <!--              <option th:each=" position : ${positions}" th:text="${position.positionName}"-->
+        <!--                      th:value="${position.positionId} "></option>-->
+        <!--            </select>-->
+        <!--            <p style="color: red" th:if="${#fields.hasErrors('position')}"-->
+        <!--               th:errors="*{position}"></p>-->
+        <!--          </div>-->
+        <!--        </div>-->
+        <!--        <div class="form-group row">-->
+        <!--          <label class="col-form-label col-4">Education Degrees</label>-->
+        <!--          <div class="col-8 mt-2">-->
+        <!--            <select th:field="*{educationDegree}">-->
+        <!--              <option th:value="null" selected="true">Selector</option>-->
+        <!--              <option th:each=" educationDegree : ${educations}"-->
+        <!--                      th:text="${educationDegree.educationDegreeName}"-->
+        <!--                      th:value="${educationDegree.educationDegreeId} "></option>-->
+        <!--            </select>-->
+        <!--            <p style="color: red" th:if="${#fields.hasErrors('educationDegree')}"-->
+        <!--               th:errors="*{educationDegree}"></p>-->
+        <!--          </div>-->
+        <!--        </div>-->
+        <!--        <div class="form-group row">-->
+        <!--          <label class="col-form-label col-4">Division</label>-->
+        <!--          <div class="col-8 mt-2">-->
+        <!--            <select th:field="*{division}">-->
+        <!--              <option th:value="null" selected="true">Selector</option>-->
+        <!--              <option th:each=" division : ${divisions}" th:text="${division.divisionName}"-->
+        <!--                      th:value="${division.divisionId} "></option>-->
+        <!--            </select>-->
+        <!--          </div>-->
+        <!--        </div>-->
+        <div class="form-group row">
+          <div class="col-8 offset-4 ">
+            <p><label class="form-check-label"><input type="checkbox"> I accept the <span>Are
+                    you sure the above information is completely correct?</span></label></p>
+            <button type="submit" class="btn btn-primary btn-lg">Add New Employee</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

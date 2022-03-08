@@ -1,0 +1,101 @@
+<div class="border border-3 row h-75">
+  <div class="col-lg-3 ">
+    <img style="width: 650px" src="https://furamavietnam.com/wp-content/uploads/2020/03/tet-pop-up-01.png">
+  </div>
+  <div class="col-lg-9 text-center container-fluid">
+    <div class="signup-form">
+      <form action="@{/service/create}" method="post" class="form-horizontal" object="${serviceDto}">
+        <div class="row">
+          <div class="col-8 offset-4">
+            <h3 style="color:lightseagreen">Update Facility</h3>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-form-label col-4">Name</label>
+          <div class="text-field col-8">
+            <input autocomplete="off" type="text"  name="serviceName"
+                   placeholder="Enter your name"/>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-form-label col-4">Area</label>
+          <div class=" text-field col-8">
+            <input autocomplete="off" type="text"  name="serviceArea"
+                   placeholder="Enter your area"/>
+          </div>
+        </div>
+        <div class=" form-group row">
+          <label class="col-form-label col-4">Cost</label>
+          <div class="text-field col-8">
+            <input autocomplete="off" type="text"  name="serviceCost"
+                   placeholder="Enter your cost"/>
+          </div>
+        </div>
+        <div class=" form-group row">
+          <label class="col-form-label col-4">Max People</label>
+          <div class="text-field col-8">
+            <input autocomplete="off" type="text" name="serviceMaxPeople"
+                   placeholder="Enter your max people"/>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-form-label col-4">Facility Type</label>
+<!--          <div class="col-8 mt-2">-->
+<!--            <select id="serviceType" th:field="*{serviceType}" name="serviceType">-->
+<!--              <option th:value="null" selected="true">Selector</option>-->
+<!--              <option th:each=" type : ${serviceTypes}" th:text="${type.serviceTypeName}"-->
+<!--                      th:value="${type.serviceTypeId} "></option>-->
+<!--            </select>-->
+<!--          </div>-->
+        </div>
+        <div class="form-group row">
+          <label class="col-form-label col-4">Rent Type</label>
+<!--          <div class="col-8 mt-2">-->
+<!--            <select th:field="*{rentType}" name="rentType">-->
+<!--              <option th:value="null" selected="true">Selector</option>-->
+<!--              <option th:each=" rentType : ${rentTypeServices}" th:text="${rentType.rentTypeName}"-->
+<!--                      th:value="${rentType.rentTypeId} "></option>-->
+<!--            </select>-->
+<!--          </div>-->
+        </div>
+        <div class=" form-group row">
+          <label class="col-form-label col-4">Standard Room</label>
+          <div class="text-field col-8">
+            <input autocomplete="off" type="text" name="standardRoom"
+                   placeholder="Enter your standard room"/>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-form-label col-4">Description </label>
+          <div class="text-field col-8">
+            <input autocomplete="off" type="text"
+                   name="descriptionOtherConvenience"
+                   placeholder="Enter your description other convenience"/>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-form-label col-4">Pool Area</label>
+          <div class="text-field col-8">
+            <input autocomplete="off" type="text"  name="poolArea"
+                   placeholder="Enter your pool area"/>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-form-label col-4">Number Of Floors</label>
+          <div class="text-field col-8">
+            <input autocomplete="off" type="text"  name="numberOfFloors"
+                   placeholder="Enter your number of floors"/>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-8 offset-4 ">
+            <p><label class="form-check-label"><input type="checkbox"> I accept the <span>Are
+                    you sure the above information is completely correct?</span></label></p>
+            <button type="submit" class="btn btn-success btn-lg col-lg-6">Update Facility</button>
+            <a style="color: white" href="/service" class="btn btn-secondary btn-lg col-lg-2 float-lg-end">Return</a>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,49 @@
+<div class="border border-3 row h-75 container-fluid">
+  <div class="col-lg-3 border border-3">
+    <a class="nav-link " href="/contract/create">Create New Contract Detail</a>
+    <a class="nav-link " href="#">Item 2</a>
+    <a class="nav-link " href="#">Item 3</a>
+  </div>
+  <div class="col-lg-9 text-center container-fluid">
+    <div class="signup-form">
+      <form action="@{/contract_detail/create}" object="${contractDetailDto}" method="POST">
+        <div class="row">
+          <div class="col-8 offset-4">
+            <h3  style="color:lightseagreen">Add Contract Detail</h3>
+          </div>
+        </div>
+        <div class=" form-group row">
+          <label class="col-form-label col-4">Contract</label>
+          <div class="text-field col-8">
+            <select th:field="*{contract}" name="contract" >
+              <option th:value="null" selected >Choose option</option>
+              <option th:each="item:${contracts}" th:value="${item.id}"  th:text="${item.id}"></option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-form-label col-4">Facility</label>
+          <div class="text-field col-8">
+            <select th:field="*{attachService}" name="attachService">
+              <option th:value="null" selected >Choose option</option>
+              <option th:each="item:${attachServices}" th:value="${item.attachServiceId}"  th:text="${item.attachServiceName}"></option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-form-label col-4">Quantity</label>
+          <div class=" text-field col-8">
+            <input autocomplete="off" type="text" name="quantity" placeholder="Enter your quantity" />
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-8 offset-4 ">
+            <p><label class="form-check-label"><input type="checkbox"> I accept the <span>Are
+                    you sure the above information is completely correct?</span></label></p>
+            <button type="submit" class="btn btn-primary btn-lg">Add New Contract Detail</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

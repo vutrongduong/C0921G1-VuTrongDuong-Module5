@@ -1,6 +1,6 @@
 <div class="border border-3 row h-75">
-  <div class="col-lg-3">
-    <img style="width: 650px" src="https://furamavietnam.com/wp-content/uploads/2020/03/tet-pop-up-01.png">
+  <div class="col-lg-3 bg-danger ">
+    <img style="width: 650px" src="https://furamavietnam.com/wp-content/uploads/2020/03/march-2022-pop-up-01-900.png">
   </div>
   <div class="col-lg-9 text-center container-fluid">
     <div class="signup-form">
@@ -20,28 +20,25 @@
         </div>
         <div class="form-group row">
           <label class="col-form-label col-4">Gender</label>
-          <div class="col-8 mt-2">
+          <div class="col-8 mt-2 date">
             <input type="radio" value="1">Male
             <input type="radio" value="0">Female
           </div>
         </div>
-        <div class="form-group row">
+        <div  class="form-group row">
           <label class="col-form-label col-4">Birthday</label>
-          <div class="col-8 mt-2">
-            <input class="form-control h-75" type="date">
+          <div  class="col-8 mt-2 date">
+            <input class="form-control" type="date">
           </div>
         </div>
         <div class="form-group row">
           <label class="col-form-label col-4">Customer Type</label>
-          <!--          <div class="col-8 mt-2">-->
-          <!--            <select th:field="${customerDto.customerType}">-->
-          <!--              <option th:value="null" selected>Selector</option>-->
-          <!--              <option th:each=" type : ${customerTypeList}" th:text="${type.customerTypeName}"-->
-          <!--                      th:value="${type.customerTypeId} "></option>-->
-          <!--            </select>-->
-          <!--            <p style="color: red" th:if="${#fields.hasErrors('customerType')}"-->
-          <!--               th:errors="*{customerType}"></p>-->
-          <!--          </div>-->
+          <div class="col-8 mt-2">
+            <select>
+              <option disabled selected>Selector</option>
+              <option *ngFor="let customerType of customerTypeList">{{customerType.customerTypeName}}</option>
+            </select>
+          </div>
         </div>
         <div class=" form-group row">
           <label class="col-form-label col-4">Id Card</label>
@@ -75,8 +72,8 @@
           <div class="col-8 offset-4 ">
             <p><label class="form-check-label"><input type="checkbox"> I accept the <span>Are
                     you sure the above information is completely correct?</span></label></p>
-            <button type="submit" class="btn btn-success btn-lg">Add New Customer</button>
-            <a style="color: white" href="/customer" class="btn btn-secondary btn-lg">Return</a>
+            <button type="submit" class="btn btn-success btn-lg col-lg-6">Add New Customer</button>
+            <a style="color: white" href="/customer" class="btn btn-secondary btn-lg col-lg-2 float-lg-end">Return</a>
           </div>
         </div>
       </form>
