@@ -48,13 +48,13 @@
   </div>
   <p>
     <label for="age">Age </label>
-    <input type="text" id="age" name="age" formControlName="age">
+    <input type="date" id="age" name="age" formControlName="age">
   </p>
   <div *ngIf="!age.valid && (age.dirty || age.touched)">
     <div [hidden]="!age.errors.required">
       <p style="color: red">Age is required</p>
     </div>
-    <div [hidden]="!age.errors.min">
+    <div [hidden]="!age.errors.checkAge">
       <p style="color: red">Age must be more than 18</p>
     </div>
   </div>
