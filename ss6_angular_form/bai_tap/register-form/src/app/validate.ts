@@ -6,4 +6,9 @@ export class Validate {
     const yearCur = new Date().getFullYear();
     return yearCur - yearAge >= 18 ? null : {checkAge: true};
   }
+
+  comparePassword(c: AbstractControl) {
+    const v = c.value;
+    return (v.password === v.confirmPassword) ? null : {passwordnotmatch: true};
+  }
 }

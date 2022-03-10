@@ -4,67 +4,117 @@
   </div>
   <div class=" container-fluid col-lg-9 text-center ">
     <div class="signup-form">
-      <form action="@{/service/create}" method="post" class="form-horizontal" object="${serviceDto}">
+      <form class="form-horizontal" [formGroup]="createForm">
         <div class="row">
           <div class="col-8 offset-4">
-            <h3  style="color:lightseagreen">Create New Facility</h3>
+            <h3 style="color:lightseagreen">Create New Facility</h3>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-form-label col-4">ID</label>
+          <div class="text-field col-8">
+            <input autocomplete="off" type="text" name="id"
+                   placeholder="Enter your id" formControlName="id"/>
+            <div *ngIf="createForm.get('id').invalid&&createForm.get('id').dirty">
+              <div [hidden]="!createForm.get('id').hasError('required') ">
+                <p style="color:red;">ID cannot be blank</p>
+              </div>
+              <div [hidden]="!createForm.get('id').hasError('pattern') ">
+                <p style="color: red">Facility Code has the format DV-XXXX (X is a number from 0-9)</p>
+              </div>
+            </div>
           </div>
         </div>
         <div class="form-group row">
           <label class="col-form-label col-4">Name</label>
           <div class="text-field col-8">
-            <input autocomplete="off" type="text"  name="serviceName"
-                   placeholder="Enter your name"/>
+            <input autocomplete="off" type="text" name="serviceName"
+                   placeholder="Enter your name" formControlName="name"/>
+            <div *ngIf="createForm.get('name').invalid&&createForm.get('name').dirty">
+              <div [hidden]="!createForm.get('name').hasError('required') ">
+                <p style="color:red;">Name cannot be blank</p>
+              </div>
+              <div [hidden]="!createForm.get('name').hasError('pattern') ">
+                <p style="color: red">Name service cannot contain numbers</p>
+              </div>
+            </div>
           </div>
         </div>
         <div class="form-group row">
           <label class="col-form-label col-4">Area</label>
           <div class=" text-field col-8 ">
-            <input autocomplete="off" type="text"  name="serviceArea"
-                   placeholder="Enter your area"/>
-
+            <input autocomplete="off" type="text" name="serviceArea"
+                   placeholder="Enter your area" formControlName="area"/>
+            <div *ngIf="createForm.get('area').invalid&&createForm.get('area').dirty">
+              <div [hidden]="!createForm.get('area').hasError('required') ">
+                <p style="color:red;">Area cannot be blank</p>
+              </div>
+              <div [hidden]="!createForm.get('area').hasError('pattern') ">
+                <p style="color: red">Area must be a positive integer</p>
+              </div>
+            </div>
           </div>
         </div>
         <div class=" form-group row">
           <label class="col-form-label col-4">Cost</label>
           <div class="text-field col-8">
-            <input autocomplete="off" type="text"  name="serviceCost"
-                   placeholder="Enter your cost"/>
+            <input autocomplete="off" type="text" name="serviceCost"
+                   placeholder="Enter your cost" formControlName="cost"/>
+            <div *ngIf="createForm.get('cost').invalid&&createForm.get('cost').dirty">
+              <div [hidden]="!createForm.get('cost').hasError('required') ">
+                <p style="color:red;">Cost cannot be blank</p>
+              </div>
+              <div [hidden]="!createForm.get('cost').hasError('pattern') ">
+                <p style="color: red">Cost must be a positive integer</p>
+              </div>
+            </div>
           </div>
         </div>
         <div class=" form-group row">
           <label class="col-form-label col-4">Max People</label>
           <div class="text-field col-8">
-            <input autocomplete="off" type="text"  name="serviceMaxPeople"
-                   placeholder="Enter your max people"/>
+            <input autocomplete="off" type="text" name="serviceMaxPeople"
+                   placeholder="Enter your max people" formControlName="maxPeople"/>
+            <div *ngIf="createForm.get('maxPeople').invalid&&createForm.get('maxPeople').dirty">
+              <div [hidden]="!createForm.get('maxPeople').hasError('required') ">
+                <p style="color:red;">Max People cannot be blank</p>
+              </div>
+              <div [hidden]="!createForm.get('maxPeople').hasError('pattern') ">
+                <p style="color: red">Max People must be a positive integer</p>
+              </div>
+            </div>
           </div>
         </div>
         <div class="form-group row">
           <label class="col-form-label col-4">Facility Type</label>
           <div class="col-8 mt-2">
-            <select id="serviceType" th:field="*{serviceType}" name="serviceType">
-              <option th:value="null" selected="true">Selector</option>
-              <option th:each=" type : ${serviceTypes}" th:text="${type.serviceTypeName}"
-                      th:value="${type.serviceTypeId} "></option>
+            <select id="serviceType" name="serviceType" formControlName="type">
+              <option [selected]="true" [disabled]="true">Selector</option>
             </select>
+            <div *ngIf="createForm.get('type').hasError('required')&&createForm.get('type').touched">
+              <p style="color: red">Please select facility type</p>
+            </div>
           </div>
         </div>
         <div class="form-group row">
           <label class="col-form-label col-4">Rent Type</label>
           <div class="col-8 mt-2">
-            <select th:field="*{rentType}" name="rentType">
-              <option th:value="null" selected="true">Selector</option>
-              <option th:each=" rentType : ${rentTypeServices}" th:text="${rentType.rentTypeName}"
-                      th:value="${rentType.rentTypeId} "></option>
+            <select name="rentType" formControlName="rentType">
+              <option [selected]="true" [disabled]="true">Selector</option>
             </select>
+            <div *ngIf="createForm.get('rentType').hasError('required')&&createForm.get('rentType').touched">
+              <p style="color: red">Please select rent type</p>
+            </div>
           </div>
         </div>
         <div class=" form-group row">
           <label class="col-form-label col-4">Standard Room</label>
           <div class="text-field col-8">
-            <input autocomplete="off" type="text"  name="standardRoom"
+            <input autocomplete="off" type="text" name="standardRoom"
                    placeholder="Enter your standard room"/>
-
+            <div *ngIf="createForm.get('standardRoom').hasError('required')&&createForm.get('standardRoom').dirty">
+              <p style="color: red">Standard Room cannot be blank</p>
+            </div>
           </div>
         </div>
         <div class="form-group row">
@@ -73,6 +123,9 @@
             <input autocomplete="off" type="text"
                    name="descriptionOtherConvenience"
                    placeholder="Enter your description other convenience"/>
+            <div *ngIf="createForm.get('description').hasError('required')&&createForm.get('description').dirty">
+              <p style="color: red">Description cannot be blank</p>
+            </div>
           </div>
         </div>
         <div class="form-group row">
@@ -80,13 +133,29 @@
           <div class="text-field col-8">
             <input autocomplete="off" type="text"
                    placeholder="Enter your pool area"/>
+            <div *ngIf="createForm.get('poolArea').invalid&&createForm.get('poolArea').touched">
+              <div [hidden]="!createForm.get('poolArea').hasError('required') ">
+                <p style="color:red;">Pool Area cannot be blank</p>
+              </div>
+              <div [hidden]="!createForm.get('poolArea').hasError('pattern') ">
+                <p style="color: red">Pool Area must be a positive integer</p>
+              </div>
+            </div>
           </div>
         </div>
         <div class="form-group row">
           <label class="col-form-label col-4">Number Of Floors</label>
           <div class="text-field col-8">
-            <input autocomplete="off" type="text"  name="numberOfFloors"
+            <input autocomplete="off" type="text" name="numberOfFloors"
                    placeholder="Enter your number of floors"/>
+            <div *ngIf="createForm.get('numberOfFloors').invalid&&createForm.get('numberOfFloors').touched">
+              <div [hidden]="!createForm.get('numberOfFloors').hasError('required') ">
+                <p style="color:red;">Number Of Floors cannot be blank</p>
+              </div>
+              <div [hidden]="!createForm.get('numberOfFloors').hasError('pattern') ">
+                <p style="color: red">Number of floors must be a positive integer</p>
+              </div>
+            </div>
           </div>
         </div>
         <div class="form-group row">

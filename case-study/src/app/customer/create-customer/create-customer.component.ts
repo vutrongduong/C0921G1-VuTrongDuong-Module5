@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {CustomerType} from '../../model/CustomerType';
 import {CustomerTypeService} from '../../services/customer-type.service';
-import {FormControl, FormGroup} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-create-customer',
@@ -11,15 +11,15 @@ import {FormControl, FormGroup} from '@angular/forms';
 export class CreateCustomerComponent implements OnInit {
   public customerTypeList: CustomerType[];
   createForm = new FormGroup({
-    customerId: new FormControl(),
-    customerType: new FormControl(),
-    customerName: new FormControl(),
-    customerBirthday: new FormControl(),
-    customerGender: new FormControl(),
-    customerIdCard: new FormControl(),
-    customerPhone: new FormControl(),
-    customerEmail: new FormControl(),
-    customerAddress: new FormControl()
+    id: new FormControl('', [Validators.required, Validators.pattern('^KH-[0-9]{4}$')]),
+    type: new FormControl('', [Validators.required]),
+    name: new FormControl('', [Validators.required,Validators.pattern('^[a-zA-Z ]+$')]),
+    birthday: new FormControl('', [Validators.required]),
+    gender: new FormControl('', [Validators.required]),
+    idCard: new FormControl('', [Validators.required, Validators.pattern('^\\d{12}|\\d{9}$')]),
+    phone: new FormControl('', [Validators.required, Validators.pattern('^(090|091|\\(84\\)\\+90|\\(84\\)\\+91){1}\\d{7}$')]),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    address: new FormControl('', [Validators.required])
   });
 
   constructor(private customerTypeService: CustomerTypeService) {
@@ -30,6 +30,6 @@ export class CreateCustomerComponent implements OnInit {
   }
 
   createSubmit() {
-
+    console.log(this.createForm.value);
   }
 }

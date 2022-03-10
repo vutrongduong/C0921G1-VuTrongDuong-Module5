@@ -5,7 +5,7 @@
   </div>
   <div class="col-lg-9 text-center container-fluid">
     <div class="signup-form">
-      <form action="@{/contract/create}" object="${contractDto}" method="POST">
+      <form [formGroup]="createForm">
         <div class="row">
           <div class="col-8 offset-4">
             <h3 style="color:lightseagreen">Add Contract</h3>
@@ -14,65 +14,83 @@
         <div class="form-group row">
           <label class="col-form-label col-4">Start Date</label>
           <div class=" text-field col-8">
-            <input autocomplete="off" type="date" name="startDate"/>
+            <input autocomplete="off" type="date" name="startDate" formControlName="startDate"/>
+            <div *ngIf="createForm.get('startDate').hasError('required')&&createForm.get('startDate').touched">
+              <p style="color:red;">Start Date cannot be blank</p>
+            </div>
           </div>
         </div>
         <div class="form-group row">
           <label class="col-form-label col-4">End Date</label>
           <div class="text-field col-8">
-            <input autocomplete="off" type="date" name="endDate"/>
+            <input autocomplete="off" type="date" name="endDate" formControlName="endDate"/>
+            <div *ngIf="createForm.get('endDate').hasError('required')&&createForm.get('endDate').touched">
+              <p style="color:red;">End Date cannot be blank</p>
+            </div>
           </div>
         </div>
         <div class="form-group row">
           <label class="col-form-label col-4">Deposit</label>
           <div class="col-8 mt-2">
-            <input class="form-control " type="text" name="deposit"
-                   placeholder="Enter your deposit">
+            <input id="deposit" class="form-control" type="text" name="deposit"
+                   placeholder="Enter your deposit" formControlName="deposit">
+            <div *ngIf="createForm.get('deposit').hasError('required')&&createForm.get('deposit').dirty">
+              <p style="color:red;">Deposit cannot be blank</p>
+            </div>
           </div>
         </div>
 
         <div class="form-group row">
           <label class="col-form-label col-4">Facility</label>
           <div class="text-field col-8">
-            <select th:field="*{service}" name="service" class="money">
-              <option th:value="null" selected>Choose Facility</option>
-              <option th:each="item:${service}" th:value="${item.serviceId}"
-                      th:text="${item.serviceName}"></option>
+            <select name="facility" class="money" formControlName="facility">
+              <option [disabled]="true" [selected]="true">Choose Facility</option>
             </select>
+            <div *ngIf="createForm.get('facility').hasError('required')&&createForm.get('facility').touched">
+              <p style="color: red">Please select Facility</p>
+            </div>
           </div>
         </div>
         <div class=" form-group row">
           <label class="col-form-label col-4">Total Money</label>
           <div class="text-field col-8">
-            <input readonly style="color: black;margin-top: 9px;" class="form-control " id="money"
-                   type="text" name="totalMoney">
+            <input  class="form-control" type="text" name="deposit"
+                    placeholder="Enter your Total Money" formControlName="totalMoney">
+            <div *ngIf="createForm.get('totalMoney').hasError('required')&&createForm.get('totalMoney').dirty">
+              <p style="color:red;">Total Money cannot be blank</p>
+            </div>
           </div>
         </div>
-        <div class=" form-group row">
-          <label class="col-form-label col-4">Employee</label>
-          <div class="text-field col-8">
-            <select th:field="*{employee}" name="employee">
-              <option th:value="null" selected>Choose Employee</option>
-              <option th:each="item:${employee}" th:value="${item.employeeId}"
-                      th:text="${item.employeeName}"></option>
-            </select>
-          </div>
-        </div>
+        <!--        <div class=" form-group row">-->
+        <!--          <label class="col-form-label col-4">Employee</label>-->
+        <!--          <div class="text-field col-8">-->
+        <!--            <select th:field="*{employee}" name="employee">-->
+        <!--              <option [selected]="true" [disabled]="true">Choose Employee</option>-->
+        <!--            </select>-->
+        <!--            <div *ngIf="createForm.get('facility').hasError('required')&&createForm.get('facility').touched">-->
+        <!--              <p style="color: red">Please select Facility</p>-->
+        <!--            </div>-->
+        <!--          </div>-->
+        <!--        </div>-->
         <div class="form-group row">
           <label class="col-form-label col-4">Customer</label>
           <div class="text-field col-8">
-            <select th:field="*{customer}" name="customer">
-              <option th:value="null" selected>Choose Customer</option>
-              <option th:each="item:${customer}" th:value="${item.customerId}"
-                      th:text="${item.customerName}"></option>
+            <select formControlName="customer" name="customer">
+              <option [selected]="true" [disabled]="true">Choose Customer</option>
             </select>
+            <div *ngIf="createForm.get('customer').hasError('required')&&createForm.get('customer').touched">
+              <p style="color: red">Please select Customer</p>
+            </div>
           </div>
         </div>
         <div class="form-group row">
           <div class="col-8 offset-4 ">
             <p><label class="form-check-label"><input type="checkbox"> I accept the <span>Are
                                                 you sure the above information is completely correct?</span></label></p>
-            <button type="submit" class="btn btn-primary btn-lg">Add New Contract</button>
+            <button (click)="createContract()" [disabled]="createForm.invalid" type="submit"
+                    class="btn btn-primary btn-lg">Add New Contract
+            </button>
+            <a style="color: white" href="/contract" class="btn btn-secondary btn-lg col-lg-2 float-lg-end">Return</a>
           </div>
         </div>
       </form>

@@ -11,36 +11,42 @@
   <div *ngIf="!createForm.valid && (email.dirty || email.touched)">
     <p style="color: red">Email is not valid</p>
   </div>
-  <p>
-    <label for="password">Password </label>
-    <input type="text" id="password" name="password" formControlName="password">
-  </p>
-  <div *ngIf="!password.valid && (password.dirty || password.touched)">
-    <div [hidden]="!password.errors.required">
-      <p style="color: red">Password is required</p>
+  <div formGroupName="passwordForm">
+    <p>
+      <label for="password">Password </label>
+      <input type="password" id="password" name="password" formControlName="password">
+    </p>
+    <div
+      *ngIf="createForm.controls.passwordForm.get('password').invalid && createForm.controls.passwordForm.get('password').dirty">
+      <div [hidden]="createForm.controls.passwordForm.get('password').hasError('required')">
+        <p style="color: red">Min Length is 6</p>
+      </div>
+      <div [hidden]="createForm.controls.passwordForm.get('password').hasError('minlength')">
+        <p style="color: red">Password is required</p>
+      </div>
     </div>
-    <div [hidden]="!password.errors.minlength">
-      <p style="color: red">Min Length is 6</p>
+    <p>
+      <label for="confirmPassword">Confirm password </label>
+      <input type="password" id="confirmPassword" name="confirmPassword" formControlName="confirmPassword">
+    </p>
+    <div
+      *ngIf="createForm.controls.passwordForm.get('confirmPassword').invalid && createForm.controls.passwordForm.get('confirmPassword').dirty">
+      <div [hidden]="createForm.controls.passwordForm.get('confirmPassword').hasError('required')">
+        <p style="color: red">Min Length is 6</p>
+      </div>
+      <div [hidden]="createForm.controls.passwordForm.get('confirmPassword').hasError('minlength')">
+        <p style="color: red">Password is required</p>
+      </div>
     </div>
-  </div>
-  <p>
-    <label for="confirmPassword">Confirm password </label>
-    <input type="text" id="confirmPassword" name="confirmPassword" formControlName="confirmPassword">
-  </p>
-  <div *ngIf="!confirmPassword.valid && (confirmPassword.dirty || confirmPassword.touched)">
-    <div [hidden]="!confirmPassword.errors.required">
-      <p style="color: red">Password is required</p>
-
-    </div>
-    <div [hidden]="!confirmPassword.errors.minlength">
-      <p style="color: red">Min Length is 6</p>
+    <div *ngIf="createForm.controls.passwordForm.hasError('passwordnotmatch')">
+      <p style="color: red">Password no match</p>
     </div>
   </div>
   <p>
     <label for="country">Country </label>
     <select id="country" name="country" formControlName="country">
       <option [disabled]="true" [selected]="true">Choose country</option>
-      <option *ngFor="let c of countryList" >{{c}}</option>
+      <option *ngFor="let c of countryList">{{c}}</option>
     </select>
   </p>
   <div *ngIf="!country.valid && (country.dirty || country.touched)">
@@ -60,7 +66,7 @@
   </div>
   <p>
     <label>Gender </label>
-    <input  type="radio" value="male" name="gender" formControlName="gender"> Male
+    <input type="radio" value="male" name="gender" formControlName="gender"> Male
     <input type="radio" value="female" name="gender" formControlName="gender"> Female
   </p>
   <div *ngIf="!gender.valid && (gender.dirty || gender.touched)">

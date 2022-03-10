@@ -2,13 +2,14 @@
 <h2>Are you sure ?</h2>
 <div>
   <div class="container-fluid">
-    <p>ID : <span ></span></p>
-    <p>Name : <span></span></p>
-    <p> Customer Type : <span ></span></p>
+    <p>ID : {{customerId}}<span></span></p>
+    <p>Name : {{customerName}} <span></span></p>
+    <p> Customer Type : {{customerName}} <span></span></p>
     Do you sure to delete?
   </div>
   <div class="mt-lg-3">
-    <button class="btn btn-danger deleteAction" >Delete</button>
-    <input type="hidden" >
+    <button class="btn btn-danger deleteAction" (click)="delete()">Delete</button>
+    <button class="btn btn-primary deleteAction" (click)="close()">Close</button>
+    <input type="hidden">
   </div>
 </div>

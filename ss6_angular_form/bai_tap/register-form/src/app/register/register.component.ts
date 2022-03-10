@@ -11,10 +11,12 @@ export class RegisterComponent implements OnInit {
   validate = new Validate();
   createForm = new FormGroup({
     email: new FormControl('', [Validators.email, Validators.required]),
-    password: new FormControl('', [Validators.minLength(6), Validators.required]),
-    confirmPassword: new FormControl('', [Validators.minLength(6), Validators.required]),
+    passwordForm: new FormGroup({
+      password: new FormControl('', [Validators.minLength(6), Validators.required]),
+      confirmPassword: new FormControl('', [Validators.minLength(6), Validators.required]),
+    }, this.validate.comparePassword),
     country: new FormControl('', Validators.required),
-    age: new FormControl('', [Validators.required,this.validate.checkAge]),
+    age: new FormControl('', [Validators.required, this.validate.checkAge]),
     gender: new FormControl(),
     phone: new FormControl('', [Validators.required, Validators.pattern('^\\+84\\d{9,10}$')])
   });
@@ -36,14 +38,6 @@ export class RegisterComponent implements OnInit {
 
   get email() {
     return this.createForm.get('email');
-  }
-
-  get password() {
-    return this.createForm.get('password');
-  }
-
-  get confirmPassword() {
-    return this.createForm.get('confirmPassword');
   }
 
   get country() {

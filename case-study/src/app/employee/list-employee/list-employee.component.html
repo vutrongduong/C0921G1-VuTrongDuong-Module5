@@ -5,28 +5,23 @@
   </div>
   <div class="col-lg-9 text-center" id="table">
     <h3 style="color:lightseagreen">Manage Employee</h3>
-    <form action="/employee" class=" row">
       <div class="search-input col-lg-4">
         <i class="fa-solid fa-magnifying-glass"></i>
         <input type="text" name="name" placeholder="Serach By Name">
       </div>
       <select name="positionId" class="col-lg-2 search-input">
         <option disabled selected>Choose Position</option>
-        <option th:each="position : ${positions}"
-                th:text="${position.positionName}"></option>
+
       </select>
       <select name="divisionId" class="col-lg-2 search-input">
         <option disabled selected>Choose Division</option>
-        <option th:each="division : ${divisions}"
-                th:text="${division.divisionName}"></option>
+
       </select>
       <select name="educationDegreeId" class="col-lg-2 search-input">
         <option disabled selected>Choose Education Degree</option>
-        <option th:each="education : ${educations}"
-                th:text="${education.educationDegreeName}"></option>
+
       </select>
       <button class="col-lg-1 btn btn-primary" type="submit">Search</button>
-    </form>
     <table class="table">
       <thead>
       <tr>

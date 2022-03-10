@@ -116,9 +116,9 @@ body {
 }*{box-sizing:border-box;}input,button,textarea{border:0;outline:none;}
 /* Main code */
 
-.text-field {
-  position: relative;
-}
+/*.text-field {*/
+/*  position: relative;*/
+/*}*/
 .text-field label {
   display: inline-block;
   color: #333;
@@ -144,6 +144,14 @@ body {
   margin-top: 5px;
 }
 select {
+  word-wrap: normal;
+  margin-top: 10px;
+  border: 2px solid #5cd3b4;
+  border-radius: 4px;
+  width: 100%;
+  padding: 10px;
+}
+#deposit{
   word-wrap: normal;
   margin-top: -3px;
   border: 2px solid #5cd3b4;

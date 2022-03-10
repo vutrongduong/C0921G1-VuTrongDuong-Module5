@@ -5,10 +5,25 @@
   <div class="col-lg-9 text-center container-fluid">
     <div class="signup-form">
 
-      <form [formGroup]="createForm" (ngSubmit)="createSubmit()" class="form-horizontal" >
+      <form [formGroup]="createForm" (ngSubmit)="createSubmit()" class="form-horizontal">
         <div class="row">
           <div class="col-8 offset-4">
-            <h3 style="color:lightseagreen">Create New Customer</h3>
+            <h1 style="color:lightseagreen">Create New Customer</h1>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-form-label col-4">ID</label>
+          <div class="text-field col-8">
+            <input autocomplete="off" type="text" formControlName="id"
+                   placeholder="Enter your id"/>
+            <div *ngIf="createForm.get('id').invalid&&createForm.get('id').dirty">
+              <div [hidden]="!createForm.get('id').hasError('required') ">
+                <p style="color:red;">ID cannot be blank</p>
+              </div>
+              <div [hidden]="!createForm.get('id').hasError('pattern') ">
+                <p style="color: red">Customer Code has the format KH-XXXX (X is a number from 0-9)</p>
+              </div>
+            </div>
           </div>
         </div>
         <div class="form-group row">
@@ -16,63 +31,107 @@
           <div class="text-field col-8">
             <input autocomplete="off" type="text" formControlName="name"
                    placeholder="Enter your name"/>
+            <div *ngIf="createForm.get('name').hasError('required')&&createForm.get('name').dirty">
+              <p style="color:red;">Name cannot be blank</p>
+            </div>
           </div>
         </div>
         <div class="form-group row">
           <label class="col-form-label col-4">Gender</label>
           <div class="col-8 mt-2 date">
-            <input type="radio" value="1">Male
-            <input type="radio" value="0">Female
+            <input type="radio" value="1" formControlName="gender">Male
+            <input type="radio" value="0" formControlName="gender">Female
+            <div
+              *ngIf="createForm.get('gender').hasError('required')&&(createForm.get('gender').dirty||createForm.get('gender').touched)">
+              <p style="color:red;">Gender cannot be blank</p>
+            </div>
           </div>
         </div>
-        <div  class="form-group row">
+        <div class="form-group row">
           <label class="col-form-label col-4">Birthday</label>
-          <div  class="col-8 mt-2 date">
-            <input class="form-control" type="date">
+          <div class="col-8 mt-2 date">
+            <input class="form-control" type="date" formControlName="birthday">
+            <div *ngIf="createForm.get('birthday').hasError('required')&&createForm.get('birthday').touched">
+              <p style="color:red;">Birthday cannot be blank</p>
+            </div>
           </div>
         </div>
         <div class="form-group row">
           <label class="col-form-label col-4">Customer Type</label>
           <div class="col-8 mt-2">
-            <select>
-              <option disabled selected>Selector</option>
+            <select formControlName="type">
+              <option [disabled]="true" [selected]="true">Selector</option>
               <option *ngFor="let customerType of customerTypeList">{{customerType.customerTypeName}}</option>
             </select>
+            <div *ngIf="createForm.get('type').hasError('required')&&createForm.get('type').touched">
+              <p style="color:red">Choose type of customer</p>
+            </div>
           </div>
         </div>
         <div class=" form-group row">
           <label class="col-form-label col-4">Id Card</label>
           <div class="text-field col-8">
             <input autocomplete="off" type="text"
-                   placeholder="Enter your id card"/>
+                   placeholder="Enter your id card" formControlName="idCard"/>
+            <div *ngIf="createForm.get('idCard').invalid&&createForm.get('idCard').dirty">
+              <div [hidden]="!createForm.get('idCard').hasError('required') ">
+                <p style="color:red;">Id Card cannot be blank</p>
+              </div>
+              <div [hidden]="!createForm.get('idCard').hasError('pattern') ">
+                <p style="color: red">ID number must be in the correct format XXXXXXXXX or XXXXXXXXXXXX (X is the number
+                  0-9)</p>
+              </div>
+            </div>
           </div>
         </div>
         <div class="form-group row">
           <label class="col-form-label col-4">Phone</label>
           <div class="text-field col-8">
             <input autocomplete="off" type="text"
-                   placeholder="Enter your phone"/>
+                   placeholder="Enter your phone" formControlName="phone"/>
+          </div>
+          <div *ngIf="createForm.get('phone').invalid&&createForm.get('phone').dirty">
+            <div [hidden]="!createForm.get('phone').hasError('required') ">
+              <p style="color:red;">Phone cannot be blank</p>
+            </div>
+            <div [hidden]="!createForm.get('phone').hasError('pattern') ">
+              <p style="color: red">Phone number must be in the correct format 090xxxxxxx or 091xxxxxxx or
+                (84)+90xxxxxxx or (84)+91xxxxxxx</p>
+            </div>
           </div>
         </div>
         <div class="form-group row">
           <label class="col-form-label col-4">E-mail</label>
           <div class="text-field col-8">
             <input autocomplete="off" type="text"
-                   placeholder="Enter your email"/>
+                   placeholder="Enter your email" formControlName="email"/>
+            <div *ngIf="createForm.get('email').invalid&&createForm.get('email').dirty">
+              <div [hidden]="!createForm.get('email').hasError('required') ">
+                <p style="color:red;">Email cannot be blank</p>
+              </div>
+              <div [hidden]="!createForm.get('email').hasError('email') ">
+                <p style="color: red">Invalid email format</p>
+              </div>
+            </div>
           </div>
         </div>
         <div class="form-group row">
-          <label class="col-form-label col-4">Address</label>
+          <label class="col-form-label col-4">address</label>
           <div class="text-field col-8">
             <input autocomplete="off" type="text"
-                   placeholder="Enter your address"/>
+                   placeholder="Enter your address" formControlName="address"/>
+            <div *ngIf="createForm.get('address').hasError('required')&&createForm.get('address').dirty">
+              <p style="color:red;">Address cannot be blank</p>
+            </div>
           </div>
         </div>
         <div class="form-group row">
           <div class="col-8 offset-4 ">
-            <p><label class="form-check-label"><input type="checkbox"> I accept the <span>Are
+            <p><label class="form-check-label"><input required="true" type="checkbox"> I accept the <span>Are
                     you sure the above information is completely correct?</span></label></p>
-            <button type="submit" class="btn btn-success btn-lg col-lg-6">Add New Customer</button>
+            <button type="submit" class="btn btn-success btn-lg col-lg-6" [disabled]="createForm.invalid">Add New
+              Customer
+            </button>
             <a style="color: white" href="/customer" class="btn btn-secondary btn-lg col-lg-2 float-lg-end">Return</a>
           </div>
         </div>
