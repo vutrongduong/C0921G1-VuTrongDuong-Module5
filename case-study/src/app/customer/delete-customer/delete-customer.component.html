@@ -4,12 +4,11 @@
   <div class="container-fluid">
     <p>ID : {{customerId}}<span></span></p>
     <p>Name : {{customerName}} <span></span></p>
-    <p> Customer Type : {{customerName}} <span></span></p>
-    Do you sure to delete?
+    <p> Customer Type : {{customerType}} <span></span></p>
+    <h1 style="color:red;">Do you sure to delete?</h1>
   </div>
-  <div class="mt-lg-3">
-    <button class="btn btn-danger deleteAction" (click)="delete()">Delete</button>
-    <button class="btn btn-primary deleteAction" (click)="close()">Close</button>
-    <input type="hidden">
+  <div class="mt-lg-3 row">
+    <button class="btn btn-danger col-6" (click)="delete()">Delete</button>
+    <button class="btn btn-primary col-6 " (click)="close()">Close</button>
   </div>
 </div>

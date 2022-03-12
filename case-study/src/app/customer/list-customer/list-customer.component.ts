@@ -13,21 +13,26 @@ import {DeleteCustomerComponent} from '../delete-customer/delete-customer.compon
 })
 export class ListCustomerComponent implements OnInit {
   public customerList: Customer[];
-  public customerTypeList: CustomerType[];
 
   constructor(private customerService: CustomerService,
-              private customerTypeService: CustomerTypeService,
               public dialog: MatDialog) {
   }
 
   ngOnInit(): void {
-    this.customerList = this.customerService.getAll();
-    this.customerTypeList = this.customerTypeService.getAll();
+    this.customerService.getAll().subscribe(value => {
+      this.customerList = value;
+    });
   }
 
-  openDialog(customerId: number) {
-    this.dialog.open(DeleteCustomerComponent , {
-      data: customerId
+  openDialog(id: number) {
+   const dialogRef = this.dialog.open(DeleteCustomerComponent, {
+      width: '450px',
+      height: '350px',
+      data: id
+    });
+    dialogRef.afterClosed().subscribe(() => {
+      this.ngOnInit();
     })
+
   }
 }

@@ -14,7 +14,7 @@ export class ListContractComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.contractList = this.contractService.getAll();
+    // this.contractList = this.contractService.getAll();
   }
 
 }

@@ -2,6 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {CustomerType} from '../../model/CustomerType';
 import {CustomerTypeService} from '../../services/customer-type.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import Swal from 'sweetalert2';
+import {CustomerService} from '../../services/customer.service';
+import {Router} from '@angular/router';
+import {Customer} from '../../model/Customer';
 
 @Component({
   selector: 'app-create-customer',
@@ -9,27 +13,42 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
   styleUrls: ['./create-customer.component.css']
 })
 export class CreateCustomerComponent implements OnInit {
-  public customerTypeList: CustomerType[];
+  customer = new Customer();
+  customerTypeList: CustomerType[];
   createForm = new FormGroup({
     id: new FormControl('', [Validators.required, Validators.pattern('^KH-[0-9]{4}$')]),
-    type: new FormControl('', [Validators.required]),
-    name: new FormControl('', [Validators.required,Validators.pattern('^[a-zA-Z ]+$')]),
-    birthday: new FormControl('', [Validators.required]),
-    gender: new FormControl('', [Validators.required]),
-    idCard: new FormControl('', [Validators.required, Validators.pattern('^\\d{12}|\\d{9}$')]),
-    phone: new FormControl('', [Validators.required, Validators.pattern('^(090|091|\\(84\\)\\+90|\\(84\\)\\+91){1}\\d{7}$')]),
-    email: new FormControl('', [Validators.required, Validators.email]),
-    address: new FormControl('', [Validators.required])
+    customerName: new FormControl('', [Validators.required, Validators.pattern('^[a-zA-Z ]+$')]),
+    customerBirthday: new FormControl('', [Validators.required]),
+    customerGender: new FormControl('', [Validators.required]),
+    customerIdCard: new FormControl('', [Validators.required, Validators.pattern('^\\d{12}|\\d{9}$')]),
+    customerPhone: new FormControl('', [Validators.required, Validators.pattern('^(090|091|\\(84\\)\\+90|\\(84\\)\\+91){1}\\d{7}$')]),
+    customerEmail: new FormControl('', [Validators.required, Validators.email]),
+    customerType: new FormControl('', [Validators.required]),
+    customerAddress: new FormControl('', [Validators.required])
   });
 
-  constructor(private customerTypeService: CustomerTypeService) {
+  constructor(private customerService: CustomerService
+    , private customerTypeService: CustomerTypeService,
+              private router: Router) {
   }
 
   ngOnInit(): void {
-    this.customerTypeList = this.customerTypeService.getAll();
+    this.customerTypeService.getAll().subscribe(value => {
+      this.customerTypeList = value;
+      console.log(this.customerTypeList);
+    });
   }
 
   createSubmit() {
-    console.log(this.createForm.value);
+    this.customerService.create(this.createForm.value).subscribe(() => {
+      this.router.navigateByUrl('/customer');
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Your work has been saved',
+        showConfirmButton: false,
+        timer: 1500
+      });
+    });
   }
 }

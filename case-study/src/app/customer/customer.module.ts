@@ -7,7 +7,7 @@ import {CustomerRoutingModule} from './customer-routing.module';
   declarations: [],
   imports: [
     CommonModule,
-    CustomerRoutingModule
+    CustomerRoutingModule,
   ]
 })
 export class CustomerModule {

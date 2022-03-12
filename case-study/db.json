@@ -1,0 +1,83 @@
+{
+  "customerList": [
+    {
+      "id": "KH-0001",
+      "customerName": "Nguyễn Văn Hai",
+      "customerBirthday": "1992-11-17",
+      "customerGender": true,
+      "customerIdCard": "09028901109",
+      "customerPhone": "0910987689",
+      "customerEmail": "Hai123@gmail.com",
+      "customerType": {
+        "customerTypeId": 4,
+        "customerTypeName": "Silver"
+      },
+      "customerAddress": "Đà Nẵng"
+    },
+    {
+      "id": "KH-0002",
+      "customerName": "Nguyễn Văn Nghia",
+      "customerBirthday": "1992-10-18",
+      "customerGender": false,
+      "customerIdCard": "09028907911",
+      "customerPhone": "0910987689",
+      "customerEmail": "Nghia23@gmail.com",
+      "customerType": {
+        "customerTypeId": 3,
+        "customerTypeName": "Gold"
+      },
+      "customerAddress": "Quang Tri"
+    },
+    {
+      "id": "KH-0003",
+      "customerName": "Nguyễn Văn Hậu",
+      "customerBirthday": "1992-06-19",
+      "customerGender": false,
+      "customerIdCard": "09028907922",
+      "customerPhone": "0910987689",
+      "customerEmail": "hau123@gmail.com",
+      "customerType": {
+        "customerTypeId": 2,
+        "customerTypeName": "Platinum"
+      },
+      "customerAddress": "Nghe An"
+    },
+    {
+      "id": "KH-0004",
+      "customerName": "dung",
+      "customerEmail": "Linhgo1509@gmail.com",
+      "customerPhone": "0910001119",
+      "customerIdCard": "12312",
+      "customerAddress": "23 Smith Road",
+      "customerType": {
+        "customerTypeId": 2,
+        "customerTypeName": "Platinum"
+      },
+      "customerGender": true,
+      "customerBirthday": "2022-03-09"
+    }
+  ],
+  "customerTypeList": [
+    {
+      "id": 1,
+      "customerTypeName": "Diamond"
+    },
+    {
+      "id": 2,
+      "customerTypeName": "Platinium"
+    },
+    {
+      "id": 3,
+      "customerTypeName": "Gold"
+    },
+    {
+      "id": 4,
+      "customerTypeName": "Silver"
+    },
+    {
+      "id": 5,
+
+      "customerTypeName": "Diamond"
+    }
+  ]
+}
