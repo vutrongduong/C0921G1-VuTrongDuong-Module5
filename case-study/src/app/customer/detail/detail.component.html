@@ -1,0 +1,50 @@
+<div>
+  <h3 style="color:lightseagreen">Customer Details</h3>
+  <div class="border border-3 row h-75">
+    <div class="text-center">
+      <table class="table">
+        <thead>
+        <tr>
+          <th scope="col">Id</th>
+          <td>{{customer.customerId}}</td>
+        </tr>
+        <tr>
+          <th scope="col">Name</th>
+          <td>{{customer.customerName}}</td>
+        </tr>
+        <tr>
+          <th scope="col">Gender</th>
+          <td>{{customer.customerGender}}</td>
+        </tr>
+        <tr>
+          <th scope="col">Birthday</th>
+          <td>{{customer.customerBirthday}}</td>
+        </tr>
+        <tr>
+          <th scope="col">Type</th>
+          <td>{{customer.customerType.customerTypeName}}</td>
+        </tr>
+        <tr>
+          <th scope="col">ID Card</th>
+          <td>{{customer.customerIdCard}}</td>
+        </tr>
+        <tr>
+          <th scope="col">Phone</th>
+          <td>{{customer.customerPhone}}</td>
+        </tr>
+        <tr>
+          <th scope="col">E-mail</th>
+          <td>{{customer.customerEmail}}</td>
+        </tr>
+        <tr>
+          <th scope="col">Address</th>
+          <td>{{customer.customerAddress}}</td>
+        </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+      <button class="btn btn-primary col-4 " (click)="close()">Close</button>
+    </div>
+  </div>
+</div>
