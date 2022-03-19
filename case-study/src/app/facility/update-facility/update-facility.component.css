@@ -5,7 +5,7 @@ body {
 }
 
 .form-control {
-  border-color: #eee;
+  border-color: #5cd3b4;
   min-height: 41px;
   box-shadow: none !important;
 }
@@ -66,7 +66,7 @@ body {
 .signup-form .btn {
   font-size: 16px;
   font-weight: bold;
-  /*background: #5cd3b4;*/
+  background: #5cd3b4;
   border: none;
   margin-top: 20px;
   min-width: 140px;

@@ -1,4 +1,4 @@
-<div class="border border-3 row h-75 container-fluid">
+<div class="border border-3 row container-fluid">
   <div class="col-lg-3">
     <img style="width: 650px" src="https://furamavietnam.com/wp-content/uploads/2020/03/tet-pop-up-01.png">
   </div>
@@ -8,13 +8,12 @@
       <form class="form-horizontal" [formGroup]="createForm" (ngSubmit)="updateCustomer()">
         <div class="row">
           <div class="col-8 offset-4">
-            <h3 style="color:lightseagreen">Update Customer</h3>
+            <h1 style="color:lightseagreen">Update Customer</h1>
           </div>
         </div>
         <div class="form-group row">
-          <label class="col-form-label col-4">ID Customer</label>
           <div class="col-8">
-            <input type="text" class="form-control" formControlName="customerId">
+            <input hidden class="form-control" formControlName="customerId">
             <h5 style="color: black;margin-top: 9px;"></h5>
           </div>
         </div>
@@ -22,7 +21,7 @@
           <label class="col-form-label col-4">Name</label>
           <div class="col-8 mt-2">
             <input class="form-control" type="text" formControlName="customerName">
-            <div *ngIf="createForm.get('customerName').invalid&&createForm.get('customerName').dirty">
+            <div *ngIf="createForm.get('customerName').invalid&&flag==true">
               <div [hidden]="!createForm.get('customerName').hasError('required') ">
                 <p style="color:red;">Id Card cannot be blank</p>
               </div>
@@ -33,14 +32,14 @@
           </div>
         </div>
         <div class="form-group row">
-          <label class="col-form-label col-4">Gender</label>
-          <div class="col-8 mt-2">
+          <label class=" col-4">Gender</label>
+          <div class="col-8 mt-2 gender" >
             <input type="radio" [value]="true"
                    formControlName="customerGender">Male
             <input type="radio" [value]="false"
                    formControlName="customerGender">Female
             <div
-              *ngIf="createForm.get('customerGender').hasError('required')&&(createForm.get('customerGender').dirty||createForm.get('customerGender').touched)">
+              *ngIf="createForm.get('customerGender').hasError('required')&&flag==true">
               <p style="color:red;">Gender cannot be blank</p>
             </div>
           </div>
@@ -48,9 +47,9 @@
         <div class="form-group row">
           <label class="col-form-label col-4">Birthday</label>
           <div class="col-8 mt-2">
-            <input class="form-control h-75" type="date" formControlName="customerBirthday">
+            <input class="form-control h-75" type="date" formControlName="customerBirthday" >
             <div
-              *ngIf="createForm.get('customerBirthday').hasError('required')&&createForm.get('customerBirthday').touched">
+              *ngIf="createForm.get('customerBirthday').hasError('required')&&flag==true">
               <p style="color:red;">Birthday cannot be blank</p>
             </div>
           </div>
@@ -58,19 +57,22 @@
         <div class="form-group row">
           <label class="col-form-label col-4">Customer Type</label>
           <div class="col-8 mt-2">
-            <!--            <select formControlName="customerType">-->
-            <!--              <option>{{createForm.get('customerType')}}</option>-->
-            <!--            </select>-->
+            <select formControlName="customerType">
+              <option value="{{customer.customerType}}" [selected]="true" [disabled]="true">{{customer.customerType.customerTypeName}}</option>
+              <option
+                *ngFor="let customerType of customerTypeList"
+                [ngValue]="customerType" >{{customerType.customerTypeName}}</option>
+            </select>
           </div>
-          <!--          <div *ngIf="createForm.get('type').hasError('required')&&createForm.get('type').touched">-->
-          <!--            <p style="color:red">Choose type of customer</p>-->
-          <!--          </div>-->
+          <div *ngIf="createForm.get('customerType').hasError('required')&&flag==true">
+            <p style="color:red">Choose type of customer</p>
+          </div>
         </div>
         <div class=" form-group row">
           <label class="col-form-label col-4">Id Card</label>
           <div class="col-8 mt-2">
             <input class="form-control" type="text" formControlName="customerIdCard">
-            <div *ngIf="createForm.get('customerIdCard').invalid&&createForm.get('customerIdCard').dirty">
+            <div *ngIf="createForm.get('customerIdCard').invalid&&flag==true">
               <div [hidden]="!createForm.get('customerIdCard').hasError('required') ">
                 <p style="color:red;">Id Card cannot be blank</p>
               </div>
@@ -79,13 +81,16 @@
                   0-9)</p>
               </div>
             </div>
+            <div *ngIf="exitsIdCard===true">
+              <p style="color:red;">ID card already exists</p>
+            </div>
           </div>
         </div>
         <div class="form-group row">
           <label class="col-form-label col-4">Phone</label>
           <div class="col-8 mt-2">
             <input class="form-control" type="text" formControlName="customerPhone">
-            <div *ngIf="createForm.get('customerPhone').invalid&&createForm.get('customerPhone').dirty">
+            <div *ngIf="createForm.get('customerPhone').invalid&&flag==true">
               <div [hidden]="!createForm.get('customerPhone').hasError('required') ">
                 <p style="color:red;">Phone cannot be blank</p>
               </div>
@@ -100,13 +105,16 @@
           <label class="col-form-label col-4">E-mail</label>
           <div class="col-8 mt-2">
             <input class="form-control" type="email" formControlName="customerEmail">
-            <div *ngIf="createForm.get('customerEmail').invalid&&createForm.get('customerEmail').dirty">
+            <div *ngIf="createForm.get('customerEmail').invalid&&flag==true">
               <div [hidden]="!createForm.get('customerEmail').hasError('required') ">
                 <p style="color:red;">Email cannot be blank</p>
               </div>
               <div [hidden]="!createForm.get('customerEmail').hasError('email') ">
                 <p style="color: red">Invalid email format</p>
               </div>
+            </div>
+            <div *ngIf="exitsEmail===true">
+              <p style="color:red;">ID card already exists</p>
             </div>
           </div>
         </div>
@@ -115,13 +123,13 @@
           <div class="col-8 mt-2">
             <input class="form-control" type="text" formControlName="customerAddress">
             <div
-              *ngIf="createForm.get('customerAddress').hasError('required')&&createForm.get('customerAddress').dirty">
+              *ngIf="createForm.get('customerAddress').hasError('required')&&flag==true">
               <p style="color:red;">Address cannot be blank</p>
             </div>
           </div>
         </div>
         <div class="form-group col-lg-8 float-lg-end">
-          <button type="submit" class="btn btn-success btn-lg col-lg-6">Update Customer</button>
+          <button type="submit" class="btn btn-success btn-lg col-lg-6" >Update Customer</button>
           <a style="color: white" href="/customer" class="btn btn-secondary btn-lg col-lg-2 float-lg-end">Return</a>
         </div>
       </form>

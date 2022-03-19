@@ -73,7 +73,6 @@ body {
 }
 
 .col-4 {
-  height: 40px;
   background: #5cd3b4;
   border: none;
   color: black;
@@ -102,6 +101,7 @@ body {
 .signup-form form a:hover {
   text-decoration: underline;
 }
+
 /* You can remove these code below*/
 :root {
   --primary: #08aeea;
@@ -112,13 +112,24 @@ body {
   --gray: #333;
   --font: "Poppins", sans-serif;
   --gradient: linear-gradient(40deg, #ff6ec4, #7873f5);
-  --shadow: 0 0 15px 0 rgba(0,0,0,0.05);
-}*{box-sizing:border-box;}input,button,textarea{border:0;outline:none;}
+  --shadow: 0 0 15px 0 rgba(0, 0, 0, 0.05);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+input, button, textarea {
+  border: 0;
+  outline: none;
+}
+
 /* Main code */
 
 .text-field {
   position: relative;
 }
+
 .text-field label {
   display: inline-block;
   color: #333;
@@ -133,6 +144,7 @@ body {
   transform: translateY(-50%);
   color: #5cd3b4;
 }
+
 .text-field input {
   padding: 12px;
   display: block;
@@ -143,6 +155,7 @@ body {
   border-radius: 4px;
   margin-top: 5px;
 }
+
 select {
   word-wrap: normal;
   margin-top: -3px;
@@ -150,11 +163,24 @@ select {
   border-radius: 4px;
   width: 100%;
   padding: 10px;
+
 }
-.date{
+
+.date {
   word-wrap: normal;
   margin-top: -3px;
   border: 2px solid #5cd3b4;
   border-radius: 4px;
+  margin-left: 150px;
+  width: 200px;
+}
 
+.gender {
+  word-wrap: normal;
+  margin-top: -3px;
+  border: 2px solid #5cd3b4;
+  border-radius: 4px;
+  padding: 10px;
+  margin-left: 150px;
+  width: 200px;
 }

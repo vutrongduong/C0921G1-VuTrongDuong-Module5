@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {Employee} from '../model/employee';
 import {Position} from '../model/Position';
 import {EducationDegree} from '../model/EducationDegree';
-import {Division} from '../model/Division';
+import {Division} from '../model/division';
 
 @Injectable({
   providedIn: 'root'

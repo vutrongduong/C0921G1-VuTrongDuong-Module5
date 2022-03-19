@@ -121,7 +121,6 @@ body {
 }
 .text-field label {
   display: inline-block;
-  color: #333;
   font-weight: 600;
   cursor: pointer;
   position: absolute;
@@ -151,3 +150,4 @@ select {
   width: 100%;
   padding: 10px;
 }
+

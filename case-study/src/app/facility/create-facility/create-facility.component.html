@@ -1,15 +1,16 @@
-<div class="border border-3 row h-75">
+<div class="border border-3 row ">
   <div class="col-lg-3 bg-danger ">
     <img style="width: 650px" src="https://furamavietnam.com/wp-content/uploads/2020/03/march-2022-pop-up-01-900.png">
   </div>
   <div class=" container-fluid col-lg-9 text-center ">
-    <div class="signup-form">
+    <div class="signup-form ">
       <form class="form-horizontal" [formGroup]="createForm">
         <div class="row">
           <div class="col-8 offset-4">
             <h3 style="color:lightseagreen">Create New Facility</h3>
           </div>
         </div>
+
         <div class="form-group row">
           <label class="col-form-label col-4">ID</label>
           <div class="text-field col-8">
@@ -29,12 +30,12 @@
           <label class="col-form-label col-4">Name</label>
           <div class="text-field col-8">
             <input autocomplete="off" type="text" name="serviceName"
-                   placeholder="Enter your name" formControlName="name"/>
-            <div *ngIf="createForm.get('name').invalid&&createForm.get('name').dirty">
-              <div [hidden]="!createForm.get('name').hasError('required') ">
+                   placeholder="Enter your name" formControlName="facilityName"/>
+            <div *ngIf="createForm.get('facilityName').invalid&&createForm.get('facilityName').dirty">
+              <div [hidden]="!createForm.get('facilityName').hasError('required') ">
                 <p style="color:red;">Name cannot be blank</p>
               </div>
-              <div [hidden]="!createForm.get('name').hasError('pattern') ">
+              <div [hidden]="!createForm.get('facilityName').hasError('pattern') ">
                 <p style="color: red">Name service cannot contain numbers</p>
               </div>
             </div>
@@ -44,12 +45,12 @@
           <label class="col-form-label col-4">Area</label>
           <div class=" text-field col-8 ">
             <input autocomplete="off" type="text" name="serviceArea"
-                   placeholder="Enter your area" formControlName="area"/>
-            <div *ngIf="createForm.get('area').invalid&&createForm.get('area').dirty">
-              <div [hidden]="!createForm.get('area').hasError('required') ">
+                   placeholder="Enter your area" formControlName="facilityArea"/>
+            <div *ngIf="createForm.get('facilityArea').invalid&&createForm.get('facilityArea').dirty">
+              <div [hidden]="!createForm.get('facilityArea').hasError('required') ">
                 <p style="color:red;">Area cannot be blank</p>
               </div>
-              <div [hidden]="!createForm.get('area').hasError('pattern') ">
+              <div [hidden]="!createForm.get('facilityArea').hasError('pattern') ">
                 <p style="color: red">Area must be a positive integer</p>
               </div>
             </div>
@@ -59,12 +60,12 @@
           <label class="col-form-label col-4">Cost</label>
           <div class="text-field col-8">
             <input autocomplete="off" type="text" name="serviceCost"
-                   placeholder="Enter your cost" formControlName="cost"/>
-            <div *ngIf="createForm.get('cost').invalid&&createForm.get('cost').dirty">
-              <div [hidden]="!createForm.get('cost').hasError('required') ">
+                   placeholder="Enter your cost" formControlName="facilityCost"/>
+            <div *ngIf="createForm.get('facilityCost').invalid&&createForm.get('facilityCost').dirty">
+              <div [hidden]="!createForm.get('facilityCost').hasError('required') ">
                 <p style="color:red;">Cost cannot be blank</p>
               </div>
-              <div [hidden]="!createForm.get('cost').hasError('pattern') ">
+              <div [hidden]="!createForm.get('facilityCost').hasError('pattern') ">
                 <p style="color: red">Cost must be a positive integer</p>
               </div>
             </div>
@@ -74,12 +75,12 @@
           <label class="col-form-label col-4">Max People</label>
           <div class="text-field col-8">
             <input autocomplete="off" type="text" name="serviceMaxPeople"
-                   placeholder="Enter your max people" formControlName="maxPeople"/>
-            <div *ngIf="createForm.get('maxPeople').invalid&&createForm.get('maxPeople').dirty">
-              <div [hidden]="!createForm.get('maxPeople').hasError('required') ">
+                   placeholder="Enter your max people" formControlName="facilityMaxPeople"/>
+            <div *ngIf="createForm.get('facilityMaxPeople').invalid&&createForm.get('facilityMaxPeople').dirty">
+              <div [hidden]="!createForm.get('facilityMaxPeople').hasError('required') ">
                 <p style="color:red;">Max People cannot be blank</p>
               </div>
-              <div [hidden]="!createForm.get('maxPeople').hasError('pattern') ">
+              <div [hidden]="!createForm.get('facilityMaxPeople').hasError('pattern') ">
                 <p style="color: red">Max People must be a positive integer</p>
               </div>
             </div>
@@ -88,10 +89,11 @@
         <div class="form-group row">
           <label class="col-form-label col-4">Facility Type</label>
           <div class="col-8 mt-2">
-            <select id="serviceType" name="serviceType" formControlName="type">
-              <option [selected]="true" [disabled]="true">Selector</option>
+            <select id="serviceType"  formControlName="facilityType">
+              <option [selected]="true" [disabled]="true" value="">Selector</option>
+              <option [ngValue]="facility" *ngFor=" let facility of facilityTypeList">{{facility.facilityName}}</option>
             </select>
-            <div *ngIf="createForm.get('type').hasError('required')&&createForm.get('type').touched">
+            <div *ngIf="createForm.get('facilityType').hasError('required')&&createForm.get('facilityType').touched">
               <p style="color: red">Please select facility type</p>
             </div>
           </div>
@@ -100,7 +102,8 @@
           <label class="col-form-label col-4">Rent Type</label>
           <div class="col-8 mt-2">
             <select name="rentType" formControlName="rentType">
-              <option [selected]="true" [disabled]="true">Selector</option>
+              <option [selected]="true" [disabled]="true" value="">Selector</option>
+              <option [ngValue]="rentType" *ngFor=" let rentType of rentTypeList">{{rentType.rentTypeName}}</option>
             </select>
             <div *ngIf="createForm.get('rentType').hasError('required')&&createForm.get('rentType').touched">
               <p style="color: red">Please select rent type</p>
@@ -110,7 +113,7 @@
         <div class=" form-group row">
           <label class="col-form-label col-4">Standard Room</label>
           <div class="text-field col-8">
-            <input autocomplete="off" type="text" name="standardRoom"
+            <input autocomplete="off" type="text" formControlName="standardRoom"
                    placeholder="Enter your standard room"/>
             <div *ngIf="createForm.get('standardRoom').hasError('required')&&createForm.get('standardRoom').dirty">
               <p style="color: red">Standard Room cannot be blank</p>
@@ -120,8 +123,7 @@
         <div class="form-group row">
           <label class="col-form-label col-4">Description </label>
           <div class="text-field col-8">
-            <input autocomplete="off" type="text"
-                   name="descriptionOtherConvenience"
+            <input autocomplete="off" type="text" formControlName="description"
                    placeholder="Enter your description other convenience"/>
             <div *ngIf="createForm.get('description').hasError('required')&&createForm.get('description').dirty">
               <p style="color: red">Description cannot be blank</p>
@@ -131,7 +133,7 @@
         <div class="form-group row">
           <label class="col-form-label col-4">Pool Area</label>
           <div class="text-field col-8">
-            <input autocomplete="off" type="text"
+            <input autocomplete="off" type="text" formControlName="poolArea"
                    placeholder="Enter your pool area"/>
             <div *ngIf="createForm.get('poolArea').invalid&&createForm.get('poolArea').touched">
               <div [hidden]="!createForm.get('poolArea').hasError('required') ">
@@ -146,7 +148,7 @@
         <div class="form-group row">
           <label class="col-form-label col-4">Number Of Floors</label>
           <div class="text-field col-8">
-            <input autocomplete="off" type="text" name="numberOfFloors"
+            <input autocomplete="off" type="text" formControlName="numberOfFloors"
                    placeholder="Enter your number of floors"/>
             <div *ngIf="createForm.get('numberOfFloors').invalid&&createForm.get('numberOfFloors').touched">
               <div [hidden]="!createForm.get('numberOfFloors').hasError('required') ">
@@ -162,8 +164,8 @@
           <div class="col-8 offset-4 ">
             <p><label class="form-check-label"><input type="checkbox"> I accept the <span>Are
                     you sure the above information is completely correct?</span></label></p>
-            <button type="submit" class="btn btn-success btn-lg col-lg-6">Add new Facility</button>
-            <a style="color: white" href="/service" class="btn btn-secondary btn-lg col-lg-2 float-lg-end">Return</a>
+            <button (click)="create()" class="btn btn-success btn-lg col-lg-6">Add new Facility</button>
+            <a style="color: white" href="/facility" class="btn btn-secondary btn-lg col-lg-2 float-lg-end">Return</a>
           </div>
         </div>
       </form>

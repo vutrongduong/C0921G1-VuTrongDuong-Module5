@@ -34,13 +34,14 @@ const routes: Routes = [{
     path: 'contract_detail/create', component: CreateContractDetailComponent,
   },
   {
-    path: '', component: HomeComponent,
+    path: '',component: HomeComponent
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes),],
   exports: [RouterModule]
+
 })
-export class AppRoutingModule {
+export class  AppRoutingModule {
 }

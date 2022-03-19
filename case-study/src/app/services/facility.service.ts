@@ -1,24 +1,36 @@
 import {Injectable} from '@angular/core';
-import {Facility} from '../model/facility';
-import {ServiceType} from '../model/ServiceType';
-import {RentType} from '../model/RentType';
+import {Facility} from '../model/Facility';
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FacilityService {
-  facilityList: Facility[] = [];
+  API_URL = 'http://localhost:3000/facilityList';
+  public facilityList: Facility[];
 
-  constructor() {
+  constructor(private httpClient: HttpClient) {
+    this.facilityList = [];
   }
 
-  public getAll() {
-    this.facilityList = [];
-    this.facilityList.push(
-      new Facility(1, 'a', 'a', 'a', 1, new RentType(1, 'a', 1), new ServiceType(1, 'a'),
-        'a', 'a', 'a', 'a',)
-    );
-    // this.facilityList.splice()
-    return this.facilityList;
+  getAll(): Observable<Facility[]> {
+    return this.httpClient.get<Facility[]>(this.API_URL);
+  }
+
+  findById(id: number): Observable<Facility> {
+    return this.httpClient.get<Facility>(this.API_URL + '/' + id);
+  }
+
+  update(facility: Facility): Observable<void> {
+    return this.httpClient.patch<void>(this.API_URL + '/' + facility.id, facility);
+  }
+
+  delete(id: number): Observable<void> {
+    return this.httpClient.delete<void>(this.API_URL + '/' + id);
+  }
+
+  create(facility: Facility): Observable<void> {
+    return this.httpClient.post<void>(this.API_URL, facility);
   }
 }

@@ -1,5 +1,5 @@
 
-import {Customer} from './Customer';
+import {Customer} from './customer';
 import {Facility} from './facility';
 
 export class Contract {

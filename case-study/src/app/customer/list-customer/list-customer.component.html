@@ -1,32 +1,32 @@
-<div class="border border-3 row h-75 container-fluid">
+<div class="border border-3 row container-fluid">
   <div class="col-lg-3 border border-3">
     <a class="btn btn-danger float-lg-end mt-lg-3" href="/customer/create">Add New Customer</a>
     <img style="width: 300px" src="https://furamavietnam.com/wp-content/uploads/2020/03/tet-pop-up-01.png">
   </div>
   <div class="col-lg-9 text-center" id="table">
     <div class="row">
-      <h3 class="col-lg-3" style="color:lightseagreen">Manage Customer</h3>
+      <h1 class="col-lg-3" style="color:lightseagreen">Manage Customer</h1>
       <div class="col-lg-9 row">
         <div class="search-input col-lg-4">
           <i class="fa-solid fa-magnifying-glass"></i>
-          <input type="text" name="customerName" placeholder="Serach By Name">
+          <input value="" type="text" [(ngModel)]="customerName" placeholder="Serach By Name">
         </div>
         <div class="search-input col-lg-4">
           <i class="fa-solid fa-magnifying-glass"></i>
-          <input type="text" name="customerAddress" placeholder="Serach By Address">
+          <input value="" type="text" [(ngModel)]="customerAddress" placeholder="Serach By Address">
         </div>
-        <select class="col-lg-3 search-input">
-          <option disabled selected>Choose Customer Type</option>
-          <!--          <option *ngFor="let customerType of customerTypeList"-->
-          <!--                  name="customerType">{{customerType.customerTypeName}}</option>-->
+        <select class="col-lg-3 search-input" [(ngModel)]="customerType">
+          <option [selected]="true" value="">Choose Customer Type</option>
+          <option *ngFor="let customerType of customerTypeList "
+                  name="customerType">{{customerType.customerTypeName}}</option>
         </select>
-        <button class="col-lg-1 btn btn-outline-success" type="submit">Search</button>
+        <button class="col-lg-1 btn btn-outline-success" (click)="search()">Search</button>
       </div>
     </div>
     <table class="table">
       <thead>
       <tr>
-        <th scope="col">Id</th>
+        <th scope="col">ID</th>
         <th scope="col">Name</th>
         <th scope="col">Gender</th>
         <th scope="col">Birthday</th>
@@ -37,22 +37,22 @@
       </thead>
       <tbody>
       <tr *ngFor="let customer of customerList">
-        <td>{{customer.id}}</td>
+        <td>{{customer.customerId}}</td>
         <td>{{customer.customerName}}</td>
         <td *ngIf="customer.customerGender===true">Male</td>
         <td *ngIf="customer.customerGender===false">FeMale</td>
-        <td>{{customer.customerBirthday}}</td>
+        <td>{{customer.customerBirthday|date: 'dd/MM/yyyy'}}</td>
         <td>{{customer.customerAddress}}</td>
         <td>{{customer.customerType.customerTypeName}}</td>
         <td>
-          <button class="btn btn-info view" type="button">
+          <button class="btn btn-info view" type="button" (click)="openDialogView(customer.customerId)">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                  class="bi bi-view-stacked" viewBox="0 0 16 16">
               <path
                 d="M3 0h10a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3zm0 8h10a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1H3z"/>
             </svg>
           </button>
-          <button class="btn btn-warning" [routerLink]="['/customer/update', customer.id] ">
+          <button class="btn btn-warning" [routerLink]="['/customer/update/', customer.customerId] ">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                  class="bi bi-pencil-square" viewBox="0 0 16 16">
               <path
@@ -61,7 +61,7 @@
                     d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
             </svg>
           </button>
-          <button type="button" class="btn btn-danger" (click)="openDialog(customer.id)">
+          <button type="button" class="btn btn-danger" (click)="openDialog(customer.customerId)">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill"
                  viewBox="0 0 16 16">
               <path
@@ -72,37 +72,17 @@
       </tr>
       </tbody>
     </table>
-    <div>
-      <!--      <nav aria-label="...">-->
-      <!--        <ul class="pagination">-->
-      <!--          <li class="page-item">-->
-      <!--            <a class="page-link" th:href="@{'/customer' (page=${customers.number - 1},-->
-      <!--                      customerName = ${customerName},-->
-      <!--                        customerAddress = ${customerAddress},-->
-      <!--                        customerType = ${customerType})}"-->
-      <!--               th:if="${customers.hasPrevious()}" style="color:lightseagreen">Previous</a>-->
-      <!--          </li>-->
-      <!--          &lt;!&ndash;                        <li class="page-item"><p class="page-link" style="color:red "&ndash;&gt;-->
-      <!--          &lt;!&ndash;                                                    th:text="${customers.number+1}">/</p></li>        <p class="page-item"><span class="page-link" style="color:red "&ndash;&gt;-->
-      <!--          &lt;!&ndash;                                                                                                                                    >/</span></p>&ndash;&gt;-->
-      <!--          &lt;!&ndash;                        <li class="page-item"><span class="page-link" style="color:red "&ndash;&gt;-->
-      <!--          &lt;!&ndash;                                                    th:text="${customers.totalPages}"></span></li>&ndash;&gt;-->
-      <!--          <li class="page-item">-->
-      <!--            <div class="page-link " style="color: red">-->
-      <!--              <span th:text="${customers.number+1}"></span> <span style="color: lightseagreen">/</span>-->
-      <!--              <span th:text="${customers.totalPages}"></span>-->
-      <!--            </div>-->
-      <!--          </li>-->
-      <!--          <li class="page-item">-->
-      <!--            <a class="page-link" th:href="@{'/customer' (page=${customers.number + 1},-->
-      <!--                      customerName = ${customerName},-->
-      <!--                      customerAddress = ${customerAddress},-->
-      <!--                      customerType = ${customerType})}" th:if="${customers.hasNext()}"-->
-      <!--               style="color:lightseagreen">Next</a>-->
-      <!--          </li>-->
-      <!--        </ul>-->
-      <!--      </nav>-->
+    <div class="row">
+      <button *ngIf="page!=0" class="btn bg-success col-1" (click)="pre()">Previous</button>
+      <p class="col-1">{{page + 1}}/{{toTalPage}}</p>
+      <button *ngIf="page!=toTalPage-1" class="btn bg-success col-1 " (click)="next()">Next</button>
     </div>
   </div>
 </div>
+
+
+
+
+
+
 

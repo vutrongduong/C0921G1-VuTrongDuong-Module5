@@ -5,7 +5,8 @@ import {ListCustomerComponent} from './list-customer/list-customer.component';
 import {CreateCustomerComponent} from './create-customer/create-customer.component';
 import {UpdateCustomerComponent} from './update-customer/update-customer.component';
 import {DeleteCustomerComponent} from './delete-customer/delete-customer.component';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 const routes: Routes = [
   {
@@ -29,11 +30,13 @@ const routes: Routes = [
     UpdateCustomerComponent,
     DeleteCustomerComponent
   ],
-  imports: [
-    CommonModule,
-    RouterModule.forChild(routes),
-    ReactiveFormsModule
-  ]
+    imports: [
+        CommonModule,
+        RouterModule.forChild(routes),
+        ReactiveFormsModule,
+        NgxPaginationModule,
+        FormsModule
+    ]
 })
 export class CustomerRoutingModule {
 }

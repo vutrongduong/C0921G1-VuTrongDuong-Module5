@@ -1,4 +1,4 @@
-import {Division} from './Division';
+import {Division} from './division';
 import {Position} from './Position';
 import {EducationDegree} from './EducationDegree';
 

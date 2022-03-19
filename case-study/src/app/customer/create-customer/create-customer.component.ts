@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {CustomerType} from '../../model/CustomerType';
-import {CustomerTypeService} from '../../services/customer-type.service';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {CustomerType} from '../../model/customerType';
+import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
 import Swal from 'sweetalert2';
 import {CustomerService} from '../../services/customer.service';
 import {Router} from '@angular/router';
-import {Customer} from '../../model/Customer';
+import {Customer} from '../../model/customer';
+import {Validate} from '../validate';
 
 @Component({
   selector: 'app-create-customer',
@@ -13,10 +13,17 @@ import {Customer} from '../../model/Customer';
   styleUrls: ['./create-customer.component.css']
 })
 export class CreateCustomerComponent implements OnInit {
+  validate = new Validate();
+  list: Customer[];
   customer = new Customer();
+  customerList: Customer[];
   customerTypeList: CustomerType[];
+  flag = false;
+  exitsId = false;
+  exitsEmail = false;
+  exitsIdCard = false;
   createForm = new FormGroup({
-    id: new FormControl('', [Validators.required, Validators.pattern('^KH-[0-9]{4}$')]),
+    // id: new FormControl('', [Validators.required, Validators.pattern('^KH-[0-9]{4}$')],),
     customerName: new FormControl('', [Validators.required, Validators.pattern('^[a-zA-Z ]+$')]),
     customerBirthday: new FormControl('', [Validators.required]),
     customerGender: new FormControl('', [Validators.required]),
@@ -27,28 +34,50 @@ export class CreateCustomerComponent implements OnInit {
     customerAddress: new FormControl('', [Validators.required])
   });
 
-  constructor(private customerService: CustomerService
-    , private customerTypeService: CustomerTypeService,
+  constructor(private customerService: CustomerService,
               private router: Router) {
   }
 
   ngOnInit(): void {
-    this.customerTypeService.getAll().subscribe(value => {
+    this.customerService.getAllCustomerType().subscribe(value => {
       this.customerTypeList = value;
-      console.log(this.customerTypeList);
+    });
+    this.customerService.getAll().subscribe(value => {
+      this.customerList = value;
     });
   }
 
   createSubmit() {
-    this.customerService.create(this.createForm.value).subscribe(() => {
-      this.router.navigateByUrl('/customer');
-      Swal.fire({
-        position: 'top-end',
-        icon: 'success',
-        title: 'Your work has been saved',
-        showConfirmButton: false,
-        timer: 1500
+    // if (this.validate.checkExitsId(this.createForm.value.id, this.customerList)) {
+    //   this.exitsId = true;
+    // } else {
+    //   this.exitsId = false;
+    // }
+    if (this.validate.checkExitsIdCard(this.createForm.value.customerIdCard, this.customerList)) {
+      this.exitsIdCard = true;
+    } else {
+      this.exitsIdCard = false;
+    }
+    if (this.validate.checkExitsEmail(this.createForm.value.customerEmail, this.customerList)) {
+      this.exitsEmail = true;
+    } else {
+      this.exitsEmail = false;
+    }
+    if (this.createForm.valid) {
+      console.log(this.createForm.value)
+      this.customerService.create(this.createForm.value).subscribe(() => {
+        this.router.navigateByUrl('/customer');
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Your work has been saved',
+          showConfirmButton: false,
+          timer: 1500
+        });
       });
-    });
+    } else {
+      this.flag = true;
+    }
   }
+
 }

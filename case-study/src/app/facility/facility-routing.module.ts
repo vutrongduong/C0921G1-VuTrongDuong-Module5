@@ -6,10 +6,11 @@ import {UpdateFacilityComponent} from './update-facility/update-facility.compone
 import {CreateFacilityComponent} from './create-facility/create-facility.component';
 import {DeleteFacilityComponent} from './delete-facility/delete-facility.component';
 import {ReactiveFormsModule} from '@angular/forms';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 const routes: Routes = [
   {
-    path: 'list',
+    path: 'facility',
     component: ListFacilityComponent
   },
   {
@@ -34,11 +35,12 @@ const routes: Routes = [
     DeleteFacilityComponent
 
   ],
-  imports: [
-    CommonModule,
-    RouterModule.forChild(routes),
-    ReactiveFormsModule
-  ]
+    imports: [
+        CommonModule,
+        RouterModule.forChild(routes),
+        ReactiveFormsModule,
+        NgxPaginationModule
+    ]
 })
 export class FacilityRoutingModule {
 }

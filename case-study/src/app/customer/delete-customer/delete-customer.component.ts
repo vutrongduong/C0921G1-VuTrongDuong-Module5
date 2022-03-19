@@ -3,7 +3,7 @@ import {MAT_DIALOG_DATA, MatDialog} from '@angular/material/dialog';
 import {Router} from '@angular/router';
 import {CustomerService} from '../../services/customer.service';
 import Swal from 'sweetalert2';
-import {Customer} from '../../model/Customer';
+import {Customer} from '../../model/customer';
 
 @Component({
   selector: 'app-delete-customer',
@@ -27,7 +27,7 @@ export class DeleteCustomerComponent implements OnInit {
   ngOnInit(): void {
     this.customerService.findById(this.data).subscribe(value => {
       this.customer = value;
-      this.customerId = this.customer.id;
+      this.customerId = this.customer.customerId;
       this.customerName = this.customer.customerName;
       this.customerType = this.customer.customerType.customerTypeName;
     });
@@ -37,7 +37,7 @@ export class DeleteCustomerComponent implements OnInit {
     this.customerService.delete(this.data).subscribe(() => {
       Swal.fire(
         'Good job!',
-        'Successfully delete customer',
+        'Successfully delete lo hang',
         'success'
       );
       this.dialog.closeAll();
